@@ -25,7 +25,7 @@ echo '<a href="/Zographensis"><b>Zographensis (Mat.)</b></a> &emsp;
      <a href="Zog_Mat_Ch27.php">Ch. 27</a> &nbsp;
      <a href="Zog_Mat_Ch28.php">Ch. 28</a>
      <br>
-     <a href="search.php">Search</a>
+     <a href="/search">Search</a>
      <br>';
 
 ?>

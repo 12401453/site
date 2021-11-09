@@ -19,5 +19,5 @@ $res = $conn->query($sql);
 $sql = "SELECT * FROM zographensis WHERE tokno < 116 AND tokno > 0";
 $result = $conn->query($sql);
 $x = 0;
-include $path."/Zographensis/Get/Glag_get.php";
+include $path."/Get/Glag_get.php";
 ?>

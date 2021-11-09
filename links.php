@@ -5,7 +5,7 @@ echo '<a href="/Zographensis"><b>Zographensis (Mat.)</b></a> &emsp;
      <a href="/1229_riga"><b>1229 Treaty between Smolensk, Riga and Gotland (version A)</b></a>  &emsp; &emsp;
      <a href="/principles.php">Reconstruction information</a>
      <br>
-     <a href="/search.php">Search</a>
+     <a href="/search">Search</a>
      <br>'
 
 

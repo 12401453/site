@@ -75,7 +75,7 @@ $res = $conn->query($sql);
 $sql = "SELECT * FROM zographensis WHERE tokno < '.tokno_higher($chap_no).' AND tokno > '.tokno_lower($chap_no).'";
 $result = $conn->query($sql);
 $x = 0;
-include $path."/Zographensis/Get/Glag_get.php";
+include $path."/Get/Glag_get.php";
 ?>');
 fclose($f);
 
@@ -102,7 +102,7 @@ $res = $conn->query($sql);
 $sql = "SELECT * FROM zographensis WHERE tokno < '.tokno_higher($chap_no).' AND tokno > '.tokno_lower($chap_no).'";
 $result = $conn->query($sql);
 $x = 0;
-include $path."/Zographensis/Get/Cyr_get.php";
+include $path."/Get/Cyr_get.php";
 ?>');
 fclose($f);
 
@@ -129,7 +129,7 @@ $res = $conn->query($sql);
 $sql = "SELECT * FROM zographensis WHERE tokno < '.tokno_higher($chap_no).' AND tokno > '.tokno_lower($chap_no).'";
 $result = $conn->query($sql);
 $x = 0;
-include $path."/Zographensis/Get/CS_get.php";
+include $path."/Get/CS_get.php";
 ?>');
 fclose($f);
 }

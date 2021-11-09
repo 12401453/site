@@ -34,23 +34,23 @@
     function tt_type() {
       t_type = document.getElementById("type_select").value;
       if (t_type == 0) {
-        document.getElementById("tt_styles").setAttribute("href", "tooltip_none_style.css");
+        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_none_style.css");
         $( ".tooltip" ).removeClass("highlighted");
       }
 
       else if (t_type == 1) {
-       document.getElementById("tt_styles").setAttribute("href", "tooltip_Cyr_style_Riga.css");
+       document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_Cyr_style_Riga.css");
        $( ".tooltip" ).removeClass("highlighted");
       }
 
 
       else if (t_type == 3) {
-        document.getElementById("tt_styles").setAttribute("href", "tooltip_CS_style.css");
+        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_CS_style.css");
         $( ".tooltip" ).removeClass("highlighted");
       }
 
       else if (t_type == 4) {
-        document.getElementById("tt_styles").setAttribute("href", "tooltip_eng_style.css");
+        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_eng_style.css");
         $( ".tooltip" ).removeClass("highlighted");
         $( ".tooltip" ).has(".tooltiptext4").addClass("highlighted");
         $(document).ready(ttPosition);
@@ -58,7 +58,7 @@
       }
 
       else if (t_type == 5) {
-        document.getElementById("tt_styles").setAttribute("href", "tooltip_etym_style.css");
+        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_etym_style.css");
         $( ".tooltip" ).removeClass("highlighted");
         $( ".tooltip" ).has(".tooltiptext5").addClass("highlighted");
         $(document).ready(ttPosition);
@@ -66,7 +66,7 @@
       }
 
       else if (t_type == 6) {
-        document.getElementById("tt_styles").setAttribute("href", "tooltip_loan_style.css");
+        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_loan_style.css");
         $( ".tooltip" ).removeClass("highlighted");
         $( ".tooltip" ).has(".tooltiptext6").addClass("highlighted");
         $(document).ready(ttPosition);

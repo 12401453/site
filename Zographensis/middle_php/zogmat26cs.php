@@ -20,5 +20,5 @@ $res = $conn->query($sql);
 $sql = "SELECT * FROM zographensis WHERE tokno < 9851 AND tokno > 8681";
 $result = $conn->query($sql);
 $x = 0;
-include $path."/Zographensis/Get/CS_get.php";
+include $path."/Get/CS_get.php";
 ?>

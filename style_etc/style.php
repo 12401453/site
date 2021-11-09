@@ -1,7 +1,7 @@
 
     <style>
-      @font-face { font-family: Bukyvede; src: url('BukyVede-Regular.ttf'); }
-      @font-face { font-family: Menaion; src: url('MenaionUnicode.otf'); }
+      @font-face { font-family: Bukyvede; src: url('/Fonts/BukyVede-Regular.ttf'); }
+      @font-face { font-family: Menaion; src: url('/Fonts/MenaionUnicode.otf'); }
 
       body {
         background-color: #f0c36dbd;
