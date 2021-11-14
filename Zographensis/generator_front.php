@@ -3,12 +3,11 @@
 $filename = "Zog_Mat_Ch";
 $php_ext = ".php";
 
-#chap_no = 65
+chap_no = 5;
 
 for ($chap_no = 3; $chap_no <= 28; $chap_no++)
   {
 
- if($chap_no < 24 && $chap_no > 16) { continue; }
 
 $f = fopen($filename.strval($chap_no).$php_ext, "w") or die("Unable to open file!");
 fwrite($f, '<!DOCTYPE html>
