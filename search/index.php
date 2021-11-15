@@ -16,7 +16,9 @@
 </head>
 <h> <?php
 $path = $_SERVER["DOCUMENT_ROOT"];
-include $path."/links.php";?>
+include $path."/links.php";
+
+?>
 </h>
 
 <body>
@@ -71,6 +73,7 @@ Search via:<span id="spoofspan" style="display: inline;"></span><br>
 
 <label for="textselect">Choose text to search:</label>
 <select id="textselect" name="textselect">
+  <option value="marianus">Codex Marianus (autorecon.)</option>
   <option value="zographensis">Codex Zographensis</option>
   <option value="kievbl">Kiev Folia</option>
   <option value="1229_riga">1229 Gotland Treaty</option>
@@ -83,7 +86,7 @@ Search via:<span id="spoofspan" style="display: inline;"></span><br>
   <label for="loans_off">Exclude badly-integrated foreign loans</label><br>
 <input type="checkbox" id="no_cs" name="no_cs" value="2">
 <input type="hidden" name="no_cs_hidden" value="1">
-    <label for="no_cs">Exclude unannotated parts of the text</label></div>
+    <label for="no_cs">Exclude (most) abbreviated words</label></div>
 <span style="font-size: 16px">(Start the query with capital 'F' to find only word-initial examples. Does not work with placeholder letters)</span><br><br>
 
 
