@@ -3,7 +3,7 @@
 
 
     <style>
-      @font-face { font-family: Bukyvede; src: url('BukyVede-Regular.ttf'); }
+      @font-face { font-family: Bukyvede; src: url('/Fonts/BukyVede-Regular.ttf'); }
       p1 {
          font-family: Bukyvede; font-size: 28px
       }
