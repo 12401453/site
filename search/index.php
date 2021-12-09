@@ -102,6 +102,7 @@ Search via:<span id="spoofspan" style="display: inline;"></span><br>
   <li>'O' for any back-vowel</li>
   <li>'K' for any velar (excluding foreign /ḱ ǵ x́/)</li>
   <li>'R' for any liquid</li>
+  <li>'M' for any labial (excluding foreign /f/)</li>
   <li>'Ъ' for any jer</li></ul> </span>
 
 </span>
