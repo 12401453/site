@@ -251,6 +251,7 @@ $O_bar_ma = mb_strpos($search2, 'O');
 $K_bar_ma = mb_strpos($search2, 'K');
 $R_bar_ma = mb_strpos($search2, 'R');
 $Ъ_bar_ma = mb_strpos($search2, 'Ъ');
+$M_bar_ma = mb_strpos($search2, 'M');
 
      while ($T_bar_ma !== false) {
             $T_pos = mb_strpos($search2, 'T');
@@ -304,6 +305,12 @@ $Ъ_bar_ma = mb_strpos($search2, 'Ъ');
       $Ъ_pos = mb_strpos($search2, 'Ъ');
       $search2 = utf8_substr_replace($search2, '[ьъ]', $Ъ_pos, 1);
       $Ъ_bar_ma = mb_strpos($search2, 'Ъ');
+      }
+
+    while ($M_bar_ma !== false) {
+      $M_pos = mb_strpos($search2, 'M');
+      $search2 = utf8_substr_replace($search2, '[mbpv]', $M_pos, 1);
+      $M_bar_ma = mb_strpos($search2, 'M');
       }
 
 
