@@ -44,7 +44,7 @@ p2 {
 <br><br>
 -- тогда is assumed to be from tъgъda based on the 139 тъгда vs 5 тогда in Supr. where strong /ъ/ --> /ъ/. That тогда is overwhelming in Zogr. is expected if we assume all strong ъ > /o/, as here the originality of the jer would be very much more obscured if we take the leap of faith of assuming that the jer in -gъd- would've been lost early even in Urksl. We also have Cz. and Pol. tedy, wtedy, not **tody.
 <br><br>
--- the zero-grade ablaut forms of verbs in -lěkti (elkti) are -ĺ̥- (despite dict. p. 696 giving pres. тлъкѫ, тлъчеши; these are CS *tĺkǫ, *tĺčeši, inf. *telћi
+-- the zero-grade ablaut forms of verbs in -lěkti (elkti) are -ĺ̥- (despite dict. p. 696 giving pres. тлъкѫ, тлъчеши; these are CS *tĺ̥kǫ, *tĺ̥češi, inf. *telћi
 <br><br>
 --What Diels 1963 calls "adjectives in -ij-", божии, велии etc. I have as "adjectives in -ьj-": božьjь, velьjь. Божий is clearly from bog + the possessive suffix *-j- > božь, and then I think the def. article -jь which has now been eaten by the stem.
 <br><br>
