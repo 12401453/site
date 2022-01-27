@@ -20,6 +20,8 @@ p2 {
 <br><br>
 <b>CS annotation decisions:</b>
 <br><br>
+<a href="https://github.com/12401453/Autoreconstructor">Autoreconstructor code</a>
+<br><br>
 -- PV2 and PV3 haven't happened, but the morphological changes are reflected, with original hard-endings in the "original morphology" column, i.e. оtьkemь-otьkomь-otьcemь
 <br><br>
 -- all inherited /a-/ is left so one can search for the extent of the j- prothesis (including /ako/ not /jǞko/). Where ⱑ denotes etymological long /e/ it is of course kept as jǞ (ⱑⱄⱅⰻ etc.), and levelling based on prefixed verb forms is needed to account for /e-/ reflexes of this in the modern languages (есть, jechać etc.). For many lexemes it is difficult to tell whether we should reconstruct CS *a or *jǞ; in these cases ESSJa and Derksen 2008 have been consulted and justification for the decision noted in column M.
