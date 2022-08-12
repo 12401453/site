@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
     $cs_id = $row["cs_id"];
     $tokno = $row["tokno"];
 
-    $cyr_id_good = $row["cyr_id_good"];
+    $cyr_id_good = str_replace(' ', '&nbsp;', $row["cyr_id_good"]);
     $eng_trans = $row["eng_trans"];
     $etym_disc = $row["etym_disc"];
     $loan_source = $row["loan_source"];

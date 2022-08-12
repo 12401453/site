@@ -1,10 +1,12 @@
 <?php
 
-echo '<a href="/Zographensis"><b>Zographensis (Mat.)</b></a> &emsp;
-     <a href="/Marianus"><b>Marianus (Autoreconstructed)</b></a> &emsp;
-     <a href="/Kiev_Missal"><b>Kiev Missal</b></a> &emsp;
-     <a href="/1229_riga"><b>1229 Treaty between Smolensk, Riga and Gotland (version A)</b></a>  &emsp; &emsp;
-     <a href="/principles.php">Reconstruction information</a>
+docRoot = "/site";
+
+echo '<a href="'.docRoot.'/Zographensis"><b>Zographensis (Mat.)</b></a> &emsp;
+     <a href="'.docRoot.'/Marianus"><b>Marianus (Autoreconstructed)</b></a> &emsp;
+     <a href="'.docRoot.'/Kiev_Missal"><b>Kiev Missal</b></a> &emsp;
+     <a href="'.docRoot.'/1229_riga"><b>1229 Treaty between Smolensk, Riga and Gotland (version A)</b></a>  &emsp; &emsp;
+     <a href="'.docRoot.'/principles.php">Reconstruction information</a>
      <br>
      <a href="Zog_Mat_Ch3.php">Ch. 3</a> &nbsp;
      <a href="Zog_Mat_Ch4.php">Ch. 4</a> &nbsp;
@@ -26,7 +28,7 @@ echo '<a href="/Zographensis"><b>Zographensis (Mat.)</b></a> &emsp;
      <a href="Zog_Mat_Ch27.php">Ch. 27</a> &nbsp;
      <a href="Zog_Mat_Ch28.php">Ch. 28</a>
      <br>
-     <a href="/search">Search</a>
+     <a href="'.docRoot.'/search">Search</a>
      <br>';
 
 ?>

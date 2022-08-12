@@ -28,13 +28,14 @@ display: inline-block;
 .tooltip .tooltiptext6 {
   visibility: hidden;
   width: max-content;
-  max-width: 300px;
+  max-height: 200px;
+  
+  overflow-y: auto;
   background-color: #000000;
   color: #FFFFFF;
   text-align: center;
   border-radius: 6px;
   padding: 5px ;
-  font-size: 15px;
   font-weight: normal;
   font-family: Calibri;
   line-height: normal;
@@ -46,9 +47,19 @@ display: inline-block;
   left: 15%;
 }
 
+@media all and (min-width: 769px) {
+  .tooltip .tooltiptext6 {
+    max-width: 300px;
+    font-size: 15px;
+  }
+}
 
-
-
+@media all and (max-width: 768px) {
+  .tooltip .tooltiptext6 {
+    max-width: 200px;
+    font-size: 12px;
+  }
+}
 
 .tooltip:hover .tooltiptext6 {
 visibility: visible;

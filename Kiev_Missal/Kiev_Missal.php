@@ -10,6 +10,7 @@
 
 <?php
 $path = $_SERVER["DOCUMENT_ROOT"];
+$path = $path."/site";
 include $path."/style_etc/style.php"; ?>
 
 </head>

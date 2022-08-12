@@ -1,5 +1,7 @@
     <script>
 
+    const docRoot = "/site";
+
  window.addEventListener("resize", ttPosition);
 
     var t_type = 0;
@@ -31,52 +33,57 @@
     }
 
     function tt_type() {
+      
+      let highlighted_words = document.querySelectorAll('.highlighted');
+      highlighted_words.forEach(highlighted_word => {
+          highlighted_word.classList.remove("highlighted");
+        });
+
       t_type = document.getElementById("type_select").value;
       if (t_type == 0) {
-        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_none_style.css");
-        $( ".tooltip" ).removeClass("highlighted");
+        document.getElementById("tt_styles").setAttribute("href", docRoot+"/style_etc/tooltip_none_style.css");       
       }
 
       else if (t_type == 1) {
-       document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_Cyr_style.css");
-       $( ".tooltip" ).removeClass("highlighted");
-
+       document.getElementById("tt_styles").setAttribute("href", docRoot+"/style_etc/tooltip_Cyr_style.css");
       }
 
       else if (t_type == 2) {
-        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_Glag_style.css");
-        $( ".tooltip" ).removeClass("highlighted");
-
+        document.getElementById("tt_styles").setAttribute("href", docRoot+"/style_etc/tooltip_Glag_style.css");
       }
 
       else if (t_type == 3) {
-        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_CS_style.css");
-        $( ".tooltip" ).removeClass("highlighted");
-
+        document.getElementById("tt_styles").setAttribute("href", docRoot+"/style_etc/tooltip_CS_style.css");
       }
 
       else if (t_type == 4) {
-        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_eng_style.css");
-        $( ".tooltip" ).removeClass("highlighted");
-        $( ".tooltip" ).has(".tooltiptext4").addClass("highlighted");
-        $(document).ready(ttPosition);
+        document.getElementById("tt_styles").setAttribute("href", docRoot+"/style_etc/tooltip_eng_style.css");
+        let tt4_words = document.querySelectorAll('.tooltiptext4');
+        tt4_words.forEach(tt4_word => {
+          tt4_word.parentNode.classList.add("highlighted");
+        });
+        
         window.dispatchEvent(new Event('resize'));
 
       }
 
       else if (t_type == 5) {
-        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_etym_style.css");
-        $( ".tooltip" ).removeClass("highlighted");
-        $( ".tooltip" ).has(".tooltiptext5").addClass("highlighted");
-        $(document).ready(ttPosition);
+        document.getElementById("tt_styles").setAttribute("href", docRoot+"/style_etc/tooltip_etym_style.css");
+        let tt5_words = document.querySelectorAll('.tooltiptext5');
+        tt5_words.forEach(tt5_word => {
+          tt5_word.parentNode.classList.add("highlighted");
+        });
+
         window.dispatchEvent(new Event('resize'));
       }
 
       else if (t_type == 6) {
-        document.getElementById("tt_styles").setAttribute("href", "/style_etc/tooltip_loan_style.css");
-        $( ".tooltip" ).removeClass("highlighted");
-        $( ".tooltip" ).has(".tooltiptext6").addClass("highlighted");
-        $(document).ready(ttPosition);
+        document.getElementById("tt_styles").setAttribute("href", docRoot+"/style_etc/tooltip_loan_style.css");
+        let tt6_words = document.querySelectorAll('.tooltiptext6');
+        tt6_words.forEach(tt6_word => {
+          tt6_word.parentNode.classList.add("highlighted");
+        });
+
         window.dispatchEvent(new Event('resize'));
       }
     }

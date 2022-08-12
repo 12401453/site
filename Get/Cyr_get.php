@@ -28,8 +28,9 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     $cs_id = $row["cs_id"];
     $tokno = $row["tokno"];
-    $glag_id = $row["glag_id"];
-    $cyr_id_good = $row["cyr_id_good"];
+    $glag_id = str_replace(' ', '&nbsp;', $row["glag_id"]);
+    $cyr_id_good = str_replace(' ', '&nbsp;', $row["cyr_id_good"]);
+
     $eng_trans = $row["eng_trans"];
     $etym_disc = $row["etym_disc"];
     $loan_source = $row["loan_source"];

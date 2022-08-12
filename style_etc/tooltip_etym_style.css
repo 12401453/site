@@ -23,23 +23,42 @@ display: inline-block;
 }
 .tooltip .tooltiptext5 {
   visibility: hidden;
-  width: max-content;
-  max-width: 350px;
+  
+
+  max-height: 200px;
+  overflow-y: auto;
   background-color: #000000;
   color: #FFFFFF;
   text-align: center;
   border-radius: 6px;
   padding: 5px ;
-  font-size: 15px;
+  width: max-content;
   font-weight: normal;
   font-family: Calibri;
   display: block;
+  left: 15%;
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
   bottom: 100%;
-  left: 15%;
+  
   line-height: normal;
+}
+
+@media all and (min-width: 769px) {
+  .tooltip .tooltiptext5 {
+    
+    
+    max-width: 300px;
+    font-size: 15px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .tooltip .tooltiptext5 {
+    max-width: 200px;
+    font-size: 12px;
+  }
 }
 .tooltip .tooltiptext6 {
   display: none;

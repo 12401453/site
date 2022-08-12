@@ -22,7 +22,7 @@ position: absolute;
   text-align: center;
   border-radius: 6px;
   padding: 5px ;
-  font-size: 20px;
+
   font-weight: normal;
   font-family: Calibri;
 
@@ -31,6 +31,17 @@ position: absolute;
   z-index: 1;
   bottom: 100%;
   left: 15%;
+}
+@media all and (min-width: 769px) {
+  .tooltip .tooltiptext3 {
+    font-size: 20px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .tooltip .tooltiptext3 {
+    font-size: 15px;
+  }
 }
 .tooltip .tooltiptext4 {
   display: none;

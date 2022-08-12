@@ -12,7 +12,6 @@ display: inline-block;
   text-align: center;
   border-radius: 6px;
   padding: 5px ;
-  font-size: 24px;
   font-weight: normal;
   font-family: Bukyvede;
 
@@ -21,6 +20,17 @@ display: inline-block;
   z-index: 1;
   bottom: 100%;
   left: 15%;
+}
+@media all and (min-width: 769px) {
+  .tooltip .tooltiptext1 {
+    font-size: 24px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .tooltip .tooltiptext1 {
+    font-size: 18px;
+  }
 }
 
 .tooltip .tooltiptext2 {

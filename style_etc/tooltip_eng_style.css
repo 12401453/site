@@ -20,13 +20,15 @@ display: inline-block;
 .tooltip .tooltiptext4 {
   visibility: hidden;
   width: max-content;
-  max-width: 200px;
+
+  max-height: 200px;
+  overflow-y: auto;
   background-color: #000000;
   color: #FFFFFF;
   text-align: center;
   border-radius: 6px;
   padding: 5px ;
-  font-size: 17px;
+
   font-family: Calibri;
   font-weight: normal;
   line-height: normal;  
@@ -37,6 +39,21 @@ display: inline-block;
   bottom: 100%;
   left: 15%;
 }
+
+@media all and (min-width: 769px) {
+  .tooltip .tooltiptext4 {
+    max-width: 300px;
+    font-size: 16px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .tooltip .tooltiptext4 {
+    max-width: 200px;
+    font-size: 13px;
+  }
+}
+
 .tooltip .tooltiptext5 {
   display: none;
   position: absolute;
