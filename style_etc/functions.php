@@ -1,5 +1,67 @@
     <script>
 
+    document.getElementById("script_bar").addEventListener('click', (event) => {
+      let switcher_classes = event.target.classList;
+      let switcher_id = event.target.id;
+      if(switcher_classes[1] == "selected") return;
+      else {
+        switcher_classes.remove("unselected");
+        switcher_classes.add("selected");
+
+        switch(switcher_id) {
+          case("glag_switcher"):
+            event.target.style.borderRight = "none";
+            event.target.style.borderBottomRightRadius = "0px";
+
+            document.getElementById("cyr_switcher").classList.remove("selected");
+            document.getElementById("cyr_switcher").classList.add("unselected");
+            document.getElementById("cyr_switcher").style.borderLeft = "2px solid #815400";
+            document.getElementById("cyr_switcher").style.borderRight = "none";
+            document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "8px";
+            document.getElementById("cyr_switcher").style.borderBottomRightRadius = "0px";
+
+            document.getElementById("CS_switcher").classList.remove("selected");
+            document.getElementById("CS_switcher").classList.add("unselected");
+            document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
+            document.getElementById("CS_switcher").style.borderBottomLeftRadius = "0px";
+            break;
+          case("cyr_switcher"):
+            event.target.style.borderLeft = "none";
+            event.target.style.borderRight = "none";
+            event.target.style.borderBottomLeftRadius = "0px";
+
+            document.getElementById("glag_switcher").classList.remove("selected");
+            document.getElementById("glag_switcher").classList.add("unselected");
+            document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
+            document.getElementById("glag_switcher").style.borderBottomRightRadius = "8px";
+
+            document.getElementById("CS_switcher").classList.remove("selected");
+            document.getElementById("CS_switcher").classList.add("unselected");
+            document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
+            document.getElementById("CS_switcher").style.borderBottomLeftRadius = "8px";
+            break;
+          case("CS_switcher"):
+            event.target.style.borderLeft = "none";
+            event.target.style.borderRight = "none";
+            event.target.style.borderBottomLeftRadius = "0px";
+
+            document.getElementById("glag_switcher").classList.remove("selected");
+            document.getElementById("glag_switcher").classList.add("unselected");
+            document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
+            document.getElementById("glag_switcher").style.borderBottomRightRadius = "0px";
+
+            document.getElementById("cyr_switcher").classList.remove("selected");
+            document.getElementById("cyr_switcher").classList.add("unselected");
+            document.getElementById("cyr_switcher").style.borderRight = "2px solid #815400";
+            document.getElementById("cyr_switcher").style.borderLeft = "none";
+            document.getElementById("cyr_switcher").style.borderBottomRightRadius = "8px";
+            document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "0px";
+            break;    
+        }
+      }
+    })
+
+
     const docRoot = "/site";
 
  window.addEventListener("resize", ttPosition);
@@ -63,7 +125,10 @@
           tt4_word.parentNode.classList.add("highlighted");
         });
         
-        window.dispatchEvent(new Event('resize'));
+       // window.dispatchEvent(new Event('resize'));
+        setTimeout(function () {
+          ttPosition();
+        }, 300);
 
       }
 
@@ -74,7 +139,11 @@
           tt5_word.parentNode.classList.add("highlighted");
         });
 
-        window.dispatchEvent(new Event('resize'));
+      //  window.dispatchEvent(new Event('resize'));
+        setTimeout(function () {
+          ttPosition();
+        }, 300);
+
       }
 
       else if (t_type == 6) {
@@ -84,7 +153,10 @@
           tt6_word.parentNode.classList.add("highlighted");
         });
 
-        window.dispatchEvent(new Event('resize'));
+        //window.dispatchEvent(new Event('resize'));
+        setTimeout(function () {
+          ttPosition();
+        }, 300);
       }
     }
 

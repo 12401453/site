@@ -45,7 +45,7 @@ display: inline-block;
   line-height: normal;
 }
 
-@media all and (min-width: 769px) {
+@media all and (min-width: 768px) {
   .tooltip .tooltiptext5 {
     
     

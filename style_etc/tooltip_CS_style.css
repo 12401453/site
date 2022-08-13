@@ -32,7 +32,7 @@ position: absolute;
   bottom: 100%;
   left: 15%;
 }
-@media all and (min-width: 769px) {
+@media all and (min-width: 768px) {
   .tooltip .tooltiptext3 {
     font-size: 20px;
   }

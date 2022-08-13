@@ -21,7 +21,7 @@ display: inline-block;
   bottom: 100%;
   left: 15%;
 }
-@media all and (min-width: 769px) {
+@media all and (min-width: 768px) {
   .tooltip .tooltiptext1 {
     font-size: 24px;
   }
