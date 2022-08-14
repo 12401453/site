@@ -1,6 +1,95 @@
     <script>
+      let codex = 2;
+      let book = 1;
+      let chapter = 5;
 
-    document.getElementById("script_bar").addEventListener('click', (event) => {
+
+     const switch_script = function (event) {
+      let switcher_classes = event.target.classList;
+      if(switcher_classes[1] == "selected") return;
+
+      let switcher_id = event.target.id;
+
+      let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter;
+      console.log(post_data);
+      const httpRequest = (method, url) => {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open(method, url, true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhttp.onreadystatechange = () => {
+          if(xhttp.readyState == 4) {
+            if(switcher_id == "CS_switcher") {
+              document.getElementById("main_text").classList.replace("non_latin", "latin");
+            }
+            else {
+              document.getElementById("main_text").classList.replace("latin", "non_latin");
+            }
+            document.getElementById("main_text").innerHTML = xhttp.responseText;
+            tt_type();
+
+            switcher_classes.remove("unselected");
+            switcher_classes.add("selected");
+            switch(switcher_id) {
+              case("glag_switcher"):
+                event.target.style.borderRight = "none";
+                event.target.style.borderBottomRightRadius = "0px";
+
+                document.getElementById("cyr_switcher").classList.remove("selected");
+                document.getElementById("cyr_switcher").classList.add("unselected");
+                document.getElementById("cyr_switcher").style.borderLeft = "2px solid #815400";
+                document.getElementById("cyr_switcher").style.borderRight = "none";
+                document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "8px";
+                document.getElementById("cyr_switcher").style.borderBottomRightRadius = "0px";
+
+                document.getElementById("CS_switcher").classList.remove("selected");
+                document.getElementById("CS_switcher").classList.add("unselected");
+                document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
+                document.getElementById("CS_switcher").style.borderBottomLeftRadius = "0px";
+                break;
+              case("cyr_switcher"):
+                event.target.style.borderLeft = "none";
+                event.target.style.borderRight = "none";
+                event.target.style.borderBottomLeftRadius = "0px";
+
+                document.getElementById("glag_switcher").classList.remove("selected");
+                document.getElementById("glag_switcher").classList.add("unselected");
+                document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
+                document.getElementById("glag_switcher").style.borderBottomRightRadius = "8px";
+
+                document.getElementById("CS_switcher").classList.remove("selected");
+                document.getElementById("CS_switcher").classList.add("unselected");
+                document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
+                document.getElementById("CS_switcher").style.borderBottomLeftRadius = "8px";
+                break;
+              case("CS_switcher"):
+                event.target.style.borderLeft = "none";
+                event.target.style.borderRight = "none";
+                event.target.style.borderBottomLeftRadius = "0px";
+
+                document.getElementById("glag_switcher").classList.remove("selected");
+                document.getElementById("glag_switcher").classList.add("unselected");
+                document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
+                document.getElementById("glag_switcher").style.borderBottomRightRadius = "0px";
+
+                document.getElementById("cyr_switcher").classList.remove("selected");
+                document.getElementById("cyr_switcher").classList.add("unselected");
+                document.getElementById("cyr_switcher").style.borderRight = "2px solid #815400";
+                document.getElementById("cyr_switcher").style.borderLeft = "none";
+                document.getElementById("cyr_switcher").style.borderBottomRightRadius = "8px";
+                document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "0px";
+                break;    
+            }
+          }
+        }
+        xhttp.send(post_data);
+      }
+      httpRequest("POST", switcher_id+".php");      
+      
+    };
+
+
+    document.getElementById("script_bar").addEventListener('click', switch_script);/*(event) => {
       let switcher_classes = event.target.classList;
       let switcher_id = event.target.id;
       if(switcher_classes[1] == "selected") return;
@@ -58,8 +147,8 @@
             document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "0px";
             break;    
         }
-      }
-    })
+      } 
+    }) */
 
 
     const docRoot = "/site";

@@ -149,7 +149,7 @@ body {
 .greek_latin_colour {
   background-color: #b2e312;
 }
-@media all and (min-width: 768px) {
+@media all and (min-width: 769px) {
   #tt_button {
     position: fixed;
     background-color: rgba(104,255,10, 0.9);
@@ -173,6 +173,7 @@ body {
   border-top-right-radius: 2px;
   padding: 3px;
   left: 0;
+  right: unset;
   bottom: 0;
   z-index: 1;
 
