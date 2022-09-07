@@ -19,12 +19,17 @@
     if(isset($_POST['codex'])) {
         $codex = $_POST['codex'];
     }
+    else $codex = 2;
+
     if(isset($_POST['book'])) {
         $book = $_POST['book'];
     }
+    else $book = 1;
+
     if(isset($_POST['chapter'])) {
         $chapter = $_POST['chapter'];
     }
+    else $chapter = 5;
 
     $sql = "SELECT tokno_start, tokno_end FROM gospels_index WHERE codex = $codex AND book = $book AND chapter = $chapter";
     $result = $conn->query($sql);

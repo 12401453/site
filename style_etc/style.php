@@ -1,9 +1,15 @@
   <style>
-      @font-face { font-family: Bukyvede; src: url('/Fonts/BukyVede-Regular.ttf'); }
-      @font-face { font-family: Menaion; src: url('/Fonts/MenaionUnicode.otf'); }
+      @font-face { font-family: Bukyvede; src: url('/site/Fonts/BukyVede-Regular.ttf'); }
+      @font-face { font-family: Menaion; src: url('/site/Fonts/MenaionUnicode.otf'); }
+      @font-face { font-family: OnDiskSans; src: url('/site/Fonts/PTSerif-Regular.ttf'); }
+
 
 body {
   background-color: #f0c36dbd;
+}
+#top_buttons {
+  font-family: OnDiskSans;
+  font-family: Calibri;
 }
 
 @media all and (min-width: 768px) {
@@ -24,6 +30,7 @@ body {
   }
 
   .latin {
+    font-family: OnDiskSans;
     font-family: Calibri;
     font-size: 24px;
     line-height: 1.63;
@@ -72,6 +79,14 @@ body {
   text-align: center;
   cursor: default;
   user-select: none;
+  font-family: OnDiskSans;
+  font-family: Calibri;
+}
+
+@media all and (min-width: 769px) {
+  .script_switcher {
+    font-size: 
+  }
 }
 .script_switcher.selected {
   background-color: white;

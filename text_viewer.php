@@ -22,7 +22,7 @@
 <div id="main_flexbox">
   <span id="script_bar"><span id="glag_switcher" class="script_switcher selected">Glagolitic</span><span id="cyr_switcher" class="script_switcher unselected">Cyrillic</span><span id="CS_switcher" class="script_switcher unselected">Common Slavic</span></span>
   <span id="main_text" class="non_latin">
-    <?php include $path."/Marianus/middle_php/marmat5glag.php"; ?>
+    <?php include $path."/glag_switcher.php"; ?>
   </span>
 </div>
 <?php include $path."/style_etc/functions.php"; ?>

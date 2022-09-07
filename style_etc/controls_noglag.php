@@ -1,15 +1,16 @@
-<div id="top_buttons"><button type="button" onclick="myFunction1(); ttPosition();">Switch to Cyrillic</button>
-<button type="button" onclick="myFunction3(); ttPosition();">Switch to Common Slavic</button><br>
 
+<br>
+
+<span id="top_buttons">
 <input type="checkbox" id="morph_highlight" name="morph_highlight" disabled="disabled">
   <label for="morph_highlight">Highlight morphologically conditioned or other non-etymological development</label><br>
 <input type="checkbox" id="loan_place" name="loan_place" disabled="disabled">
-  <label for="loan_place">Show loanword origin</label></div>
+  <label for="loan_place">Show loanword origin</label><br>
 
-  <input type="radio" id="undone" name="undone" onclick="undoFunction()" style="display: none">
-    <label for="undone" id="undo_label" style="display: none">Undo morphologically conditioned or other non-etymological changes</label><br>
-    <input type="radio" id="redone" name="undone" onclick="redoFunction()" style="display: none">
-      <label for="redone" id="redo_label" style="display: none">Keep morphologically conditioned or other non-etymological changes</label>
+ <span id="CS_controls" style="display: none"> <input type="radio" id="undone" name="undone" onclick="undoFunction()">
+    <label for="undone" id="undo_label">Undo morphologically conditioned or other non-etymological changes</label><br>
+    <input type="radio" checked id="redone" name="undone" onclick="redoFunction()">
+      <label for="redone" id="redo_label">Keep morphologically conditioned or other non-etymological changes</label></span><br></span>
 
 <div id="tt_button"><label for="type_select" style="font-weight: bold">Tooltip:</label>
     <select id="type_select" name="tooltip_data" onchange="tt_type()">
