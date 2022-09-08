@@ -7,10 +7,7 @@
 <input type="checkbox" id="loan_place" name="loan_place" disabled="disabled">
   <label for="loan_place">Show loanword origin</label><br>
 
-  <span id="CS_controls" style="display: none"><input type="radio" id="undone" name="undone" onclick="undoFunction(); ttPosition();">
-    <label for="undone" id="undo_label">Undo morphologically conditioned or other non-etymological changes</label><br>
-  <input type="radio" checked id="redone" name="undone" onclick="redoFunction(); ttPosition();">
-    <label for="redone" id="redo_label">Keep morphologically conditioned or other non-etymological changes</label></span><br></span>
+  <br></span>
 
 <div id="tt_button"><label for="type_select" style="font-weight: bold">Tooltip:</label>
     <select id="type_select" name="tooltip_data" onchange="tt_type()">

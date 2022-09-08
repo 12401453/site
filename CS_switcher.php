@@ -39,7 +39,7 @@ $path = $_SERVER["DOCUMENT_ROOT"];
     $sql = "SELECT * FROM $codex_table WHERE tokno < $tokno_end AND tokno > $tokno_start";
     $result = $conn->query($sql);
 
-echo "<br>";
+//echo "<br>";
 
 if ($result->num_rows > 0) {
   

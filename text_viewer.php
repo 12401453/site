@@ -21,6 +21,10 @@
 
 <div id="main_flexbox">
   <span id="script_bar"><span id="glag_switcher" class="script_switcher selected">Glagolitic</span><span id="cyr_switcher" class="script_switcher unselected">Cyrillic</span><span id="CS_switcher" class="script_switcher unselected">Common Slavic</span></span>
+  <span id="CS_controls" style="display: none"><input type="radio" id="undone" name="undone" onclick="undoFunction(); ttPosition();">
+    <label for="undone" id="undo_label">Undo non-etymological changes</label><br>
+  <input type="radio" checked id="redone" name="undone" onclick="redoFunction(); ttPosition();">
+    <label for="redone" id="redo_label">Keep non-etymological changes</label><br><br></span>
   <span id="main_text" class="non_latin">
     <?php include $path."/glag_switcher.php"; ?>
   </span>

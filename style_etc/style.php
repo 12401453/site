@@ -11,6 +11,10 @@ body {
   font-family: OnDiskSans;
   font-family: Calibri;
 }
+#CS_controls {
+  font-family: OnDiskSans;
+  font-family: Calibri;
+}
 
 @media all and (min-width: 768px) {
   #main_flexbox {
@@ -74,6 +78,9 @@ body {
     align-content: stretch;
 }
 .script_switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 15px;
   flex: 1;
   text-align: center;
