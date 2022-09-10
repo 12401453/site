@@ -1,174 +1,178 @@
-    <script>
-      let codex = 2;
-      let book = 1;
-      let chapter = 5;
+<script>
+    let text_id = 1;
+    let codex = 2;
+    let book = 1;
+    let chapter = 5;
 
-      const clickEvent = new Event('click');
-      
-      const switch_script = function (event) {
-        let switcher_classes = event.target.classList;
-        if(switcher_classes[1] == "selected") return;
+    const textselector = document.getElementById('textselect');
+    const resizeSelect = function () {
+      let dummyselect = document.createElement('select');
+      let dummyoption = document.createElement('option');
 
-        let switcher_id = event.target.id;
+      dummyoption.textContent = textselector.options[textselector.selectedIndex].text;
+      dummyselect.id = 'hidden_select';
+      dummyselect.appendChild(dummyoption);
+      textselector.after(dummyselect);//.after('') inserts stuff directly after the entire element, i.e. after its </> closing tag
 
-        let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter;
-        console.log(post_data);
+      const dummywidth = dummyselect.getBoundingClientRect().width;
+      console.log("Select width: "+dummywidth);
+      textselector.style.width = `${dummywidth}px`;
+
+      dummyselect.remove();
+    };
+
+    const selectText = function () {
+      text_id = Number(document.getElementById('textselect').value);
+
+      if(text_id < 3) {
+        text_id == 1 ? codex = 2 : codex = 1;
+        let post_data = "text_id="+text_id+"&codex="+codex+"&book="+book+"&chapter="+chapter;
         const httpRequest = (method, url) => {
           const xhttp = new XMLHttpRequest();
           xhttp.open(method, url, true);
+          xhttp.responseType = 'json';
           xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
           xhttp.onreadystatechange = () => {
             if(xhttp.readyState == 4) {
-              if(switcher_id == "CS_switcher") {
-                document.getElementById("main_text").classList.replace("non_latin", "latin");
-              }
-              else {
-                document.getElementById("main_text").classList.replace("latin", "non_latin");
-              }
-              document.getElementById("main_text").innerHTML = xhttp.responseText;
-              tt_type();
+              let gospels_select_HTML = '<label id="booklabel" for="bookselect">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><select id="bookselect" name="bookselect" onchange="selectBook()"><option value="1">Matthew</option><option value="2">Mark</option><option value="3">Luke</option><option value="4">John</option></select><select id="chapselect" name="chapselect" onchange="selectChapter()">';
+              let json_response = xhttp.response;
+              gospels_select_HTML += json_response.HTML_options;
 
-              switcher_classes.remove("unselected");
-              switcher_classes.add("selected");
-              switch(switcher_id) {
-                case("glag_switcher"):
-                  event.target.style.borderRight = "none";
-                  event.target.style.borderBottomRightRadius = "0px";
-
-                  document.getElementById("cyr_switcher").classList.remove("selected");
-                  document.getElementById("cyr_switcher").classList.add("unselected");
-                  document.getElementById("cyr_switcher").style.borderLeft = "2px solid #815400";
-                  document.getElementById("cyr_switcher").style.borderRight = "none";
-                  document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "8px";
-                  document.getElementById("cyr_switcher").style.borderBottomRightRadius = "0px";
-
-                  document.getElementById("CS_switcher").classList.remove("selected");
-                  document.getElementById("CS_switcher").classList.add("unselected");
-                  document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
-                  document.getElementById("CS_switcher").style.borderBottomLeftRadius = "0px";
-
-                  document.getElementById("CS_controls").style.display = "none";
-                  break;
-                case("cyr_switcher"):
-                  event.target.style.borderLeft = "none";
-                  event.target.style.borderRight = "none";
-                  event.target.style.borderBottomLeftRadius = "0px";
-
-                  document.getElementById("glag_switcher").classList.remove("selected");
-                  document.getElementById("glag_switcher").classList.add("unselected");
-                  document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
-                  document.getElementById("glag_switcher").style.borderBottomRightRadius = "8px";
-
-                  document.getElementById("CS_switcher").classList.remove("selected");
-                  document.getElementById("CS_switcher").classList.add("unselected");
-                  document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
-                  document.getElementById("CS_switcher").style.borderBottomLeftRadius = "8px";
-
-                  document.getElementById("CS_controls").style.display = "none";
-                  break;
-                case("CS_switcher"):
-                  event.target.style.borderLeft = "none";
-                  event.target.style.borderRight = "none";
-                  event.target.style.borderBottomLeftRadius = "0px";
-
-                  document.getElementById("glag_switcher").classList.remove("selected");
-                  document.getElementById("glag_switcher").classList.add("unselected");
-                  document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
-                  document.getElementById("glag_switcher").style.borderBottomRightRadius = "0px";
-
-                  document.getElementById("cyr_switcher").classList.remove("selected");
-                  document.getElementById("cyr_switcher").classList.add("unselected");
-                  document.getElementById("cyr_switcher").style.borderRight = "2px solid #815400";
-                  document.getElementById("cyr_switcher").style.borderLeft = "none";
-                  document.getElementById("cyr_switcher").style.borderBottomRightRadius = "8px";
-                  document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "0px";
-
-                  document.getElementById("CS_controls").style.display = "inline";
-                  if(document.getElementById("undone").checked) { undoFunction(); }
-            
-                  break;    
-              }
-              if(loan_place_showing) {
-                document.getElementById("loan_place").dispatchEvent(clickEvent);
-                document.getElementById("loan_place").dispatchEvent(clickEvent);
-              }
-              if(gone_green) {
-                document.getElementById("morph_highlight").dispatchEvent(clickEvent);
-                document.getElementById("morph_highlight").dispatchEvent(clickEvent);
+              if(json_response.chapter_exists == false) {
+                codex == 1 ? chapter = 3 : chapter = 5; 
               }
 
+              document.getElementById("gospels_chap_select").innerHTML = gospels_select_HTML;
+              document.getElementById("chapselect").value = chapter;
+              document.getElementById("bookselect").value = book;
+
+              document.getElementById("gospels_chap_select").style.display = "block";
             }
           }
           xhttp.send(post_data);
         }
-        httpRequest("POST", switcher_id+".php");      
-        
-      };
+        httpRequest("POST", "gospels_chap_select.php");
 
-    document.getElementById("script_bar").addEventListener('click', switch_script);/*(event) => {
-      let switcher_classes = event.target.classList;
-      let switcher_id = event.target.id;
-      if(switcher_classes[1] == "selected") return;
+      }
       else {
-        switcher_classes.remove("unselected");
-        switcher_classes.add("selected");
+        document.getElementById("gospels_chap_select").style.display = "none";
+      }
 
-        switch(switcher_id) {
-          case("glag_switcher"):
-            event.target.style.borderRight = "none";
-            event.target.style.borderBottomRightRadius = "0px";
+      let post_data = "text_id="+text_id;
 
-            document.getElementById("cyr_switcher").classList.remove("selected");
-            document.getElementById("cyr_switcher").classList.add("unselected");
-            document.getElementById("cyr_switcher").style.borderLeft = "2px solid #815400";
-            document.getElementById("cyr_switcher").style.borderRight = "none";
-            document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "8px";
-            document.getElementById("cyr_switcher").style.borderBottomRightRadius = "0px";
+    };
+    
+    textselector.addEventListener('change', resizeSelect);
+    resizeSelect();
 
-            document.getElementById("CS_switcher").classList.remove("selected");
-            document.getElementById("CS_switcher").classList.add("unselected");
-            document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
-            document.getElementById("CS_switcher").style.borderBottomLeftRadius = "0px";
-            break;
-          case("cyr_switcher"):
-            event.target.style.borderLeft = "none";
-            event.target.style.borderRight = "none";
-            event.target.style.borderBottomLeftRadius = "0px";
 
-            document.getElementById("glag_switcher").classList.remove("selected");
-            document.getElementById("glag_switcher").classList.add("unselected");
-            document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
-            document.getElementById("glag_switcher").style.borderBottomRightRadius = "8px";
+    const clickEvent = new Event('click');
+    
+    const switch_script = function (event) {
+      let switcher_classes = event.target.classList;
+      if(switcher_classes[1] == "selected") return;
 
-            document.getElementById("CS_switcher").classList.remove("selected");
-            document.getElementById("CS_switcher").classList.add("unselected");
-            document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
-            document.getElementById("CS_switcher").style.borderBottomLeftRadius = "8px";
-            break;
-          case("CS_switcher"):
-            event.target.style.borderLeft = "none";
-            event.target.style.borderRight = "none";
-            event.target.style.borderBottomLeftRadius = "0px";
+      let switcher_id = event.target.id;
 
-            document.getElementById("glag_switcher").classList.remove("selected");
-            document.getElementById("glag_switcher").classList.add("unselected");
-            document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
-            document.getElementById("glag_switcher").style.borderBottomRightRadius = "0px";
+      let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter;
+      console.log(post_data);
+      const httpRequest = (method, url) => {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open(method, url, true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-            document.getElementById("cyr_switcher").classList.remove("selected");
-            document.getElementById("cyr_switcher").classList.add("unselected");
-            document.getElementById("cyr_switcher").style.borderRight = "2px solid #815400";
-            document.getElementById("cyr_switcher").style.borderLeft = "none";
-            document.getElementById("cyr_switcher").style.borderBottomRightRadius = "8px";
-            document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "0px";
-            break;    
+        xhttp.onreadystatechange = () => {
+          if(xhttp.readyState == 4) {
+            if(switcher_id == "CS_switcher") {
+              document.getElementById("main_text").classList.replace("non_latin", "latin");
+            }
+            else {
+              document.getElementById("main_text").classList.replace("latin", "non_latin");
+            }
+            document.getElementById("main_text").innerHTML = xhttp.responseText;
+            tt_type();
+
+            switcher_classes.remove("unselected");
+            switcher_classes.add("selected");
+            switch(switcher_id) {
+              case("glag_switcher"):
+                event.target.style.borderRight = "none";
+                event.target.style.borderBottomRightRadius = "0px";
+
+                document.getElementById("cyr_switcher").classList.remove("selected");
+                document.getElementById("cyr_switcher").classList.add("unselected");
+                document.getElementById("cyr_switcher").style.borderLeft = "2px solid #815400";
+                document.getElementById("cyr_switcher").style.borderRight = "none";
+                document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "8px";
+                document.getElementById("cyr_switcher").style.borderBottomRightRadius = "0px";
+
+                document.getElementById("CS_switcher").classList.remove("selected");
+                document.getElementById("CS_switcher").classList.add("unselected");
+                document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
+                document.getElementById("CS_switcher").style.borderBottomLeftRadius = "0px";
+
+                document.getElementById("CS_controls").style.display = "none";
+                break;
+              case("cyr_switcher"):
+                event.target.style.borderLeft = "none";
+                event.target.style.borderRight = "none";
+                event.target.style.borderBottomLeftRadius = "0px";
+
+                document.getElementById("glag_switcher").classList.remove("selected");
+                document.getElementById("glag_switcher").classList.add("unselected");
+                document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
+                document.getElementById("glag_switcher").style.borderBottomRightRadius = "8px";
+
+                document.getElementById("CS_switcher").classList.remove("selected");
+                document.getElementById("CS_switcher").classList.add("unselected");
+                document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
+                document.getElementById("CS_switcher").style.borderBottomLeftRadius = "8px";
+
+                document.getElementById("CS_controls").style.display = "none";
+                break;
+              case("CS_switcher"):
+                event.target.style.borderLeft = "none";
+                event.target.style.borderRight = "none";
+                event.target.style.borderBottomLeftRadius = "0px";
+
+                document.getElementById("glag_switcher").classList.remove("selected");
+                document.getElementById("glag_switcher").classList.add("unselected");
+                document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
+                document.getElementById("glag_switcher").style.borderBottomRightRadius = "0px";
+
+                document.getElementById("cyr_switcher").classList.remove("selected");
+                document.getElementById("cyr_switcher").classList.add("unselected");
+                document.getElementById("cyr_switcher").style.borderRight = "2px solid #815400";
+                document.getElementById("cyr_switcher").style.borderLeft = "none";
+                document.getElementById("cyr_switcher").style.borderBottomRightRadius = "8px";
+                document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "0px";
+
+                document.getElementById("CS_controls").style.display = "inline";
+                if(document.getElementById("undone").checked) { undoFunction(); }
+          
+                break;    
+            }
+            if(loan_place_showing) {
+              document.getElementById("loan_place").dispatchEvent(clickEvent);
+              document.getElementById("loan_place").dispatchEvent(clickEvent);
+            }
+            if(gone_green) {
+              document.getElementById("morph_highlight").dispatchEvent(clickEvent);
+              document.getElementById("morph_highlight").dispatchEvent(clickEvent);
+            }
+
+          }
         }
-      } 
-    }) */
+        xhttp.send(post_data);
+      }
+      httpRequest("POST", switcher_id+".php");      
+      
+    };
+
+  document.getElementById("script_bar").addEventListener('click', switch_script);
 
 
-    const docRoot = "/site";
+  const docRoot = "/site";
 
  window.addEventListener("resize", ttPosition);
 
@@ -266,7 +270,5 @@
       }
     }
 
-
-scrollFunction();
-
-    </script>
+    scrollFunction(); //has to go last
+</script>

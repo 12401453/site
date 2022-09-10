@@ -11,12 +11,65 @@ body {
   font-family: OnDiskSans;
   font-family: Calibri;
 }
+
+#select_button {
+  font-family: OnDiskSans;
+  font-family: Calibri;
+  font-size: 16px;
+  width: fit-content;
+  max-width: 97%;
+  border-radius: 2px;
+  padding: 6px;
+ /* background-color: #e9a728bd; */
+}
+
+#textselect {
+  font-family: OnDiskSans;
+  font-family: Calibri;
+  font-size: inherit;
+  min-width: 100px;
+  max-width: 100%;
+ 
+  padding: 5px;
+}
+
+#hidden_select {
+  font-family: OnDiskSans;
+  font-family: Calibri;
+  font-size: inherit;
+  padding: 5px;
+  visibility: hidden; position: fixed;
+}
+
+#gospels_chap_select {
+  font-family: OnDiskSans;
+  font-family: Calibri;
+  font-size: 16px;
+  width: fit-content;
+  max-width: 97%;
+  border-radius: 2px;
+  padding: 6px;
+ 
+}
+
+#bookselect, #chapselect {
+  font-family: OnDiskSans;
+  font-family: Calibri;
+  font-size: inherit;
+  padding: 1px;
+}
+
+
 #CS_controls {
   font-family: OnDiskSans;
   font-family: Calibri;
 }
 
 @media all and (min-width: 768px) {
+  #textselect {
+    width: 229px;
+  }
+
   #main_flexbox {
     margin-left: 7.3%;
     margin-right: 7.3%;
@@ -53,6 +106,16 @@ body {
     border: 2px solid #815400;
     margin-bottom: 30px;
   }
+
+
+  .script_switcher, #top_buttons, #CS_controls, #select_button, #gospels_chap_select {
+    font-size: 14px;
+  }
+
+  #textselect {
+    width: 204px;
+  }
+  
   .non_latin {
   font-family: Bukyvede;
   font-size: 22px;
@@ -90,11 +153,6 @@ body {
   font-family: Calibri;
 }
 
-@media all and (min-width: 769px) {
-  .script_switcher {
-    font-size: 
-  }
-}
 .script_switcher.selected {
   background-color: white;
   border-bottom: none;
@@ -171,7 +229,7 @@ body {
 .greek_latin_colour {
   background-color: #b2e312;
 }
-@media all and (min-width: 769px) {
+@media all and (min-width: 768px) {
   #tt_button {
     position: fixed;
     background-color: rgba(104,255,10, 0.9);
