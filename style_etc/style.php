@@ -10,6 +10,7 @@ body {
 #top_buttons {
   font-family: OnDiskSans;
   font-family: Calibri;
+  user-select: none;
 }
 
 #select_button {
@@ -49,7 +50,12 @@ body {
   max-width: 97%;
   border-radius: 2px;
   padding: 6px;
+  user-select: none;
  
+}
+#booklabel {
+  visibility: hidden;
+
 }
 
 #bookselect, #chapselect {
@@ -241,6 +247,21 @@ body {
     z-index: 1;
 
   }
+
+  #loadingbutton {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #e9a728bd;
+  border-style: solid;
+  border-radius: 2px;
+  padding: 6px; 
+  z-index: 1;
+  color: black;
+  font-family: OnDiskSans;
+  font-family: Calibri;
+  font-size: 47px;
+  }
 }
 
 @media all and (max-width: 768px) {
@@ -256,9 +277,27 @@ body {
   right: unset;
   bottom: 0;
   z-index: 1;
+  }
 
+  #loadingbutton {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background-color: #e9a728bd;
+  border-style: solid;
+  border-radius: 2px;
+  padding: 5px;
+  z-index: 1;
+  color: black;
+  font-family: OnDiskSans;
+  font-family: Calibri;
+  font-size: 34px;
   }
 }
+
+
+
+
 
 </style>
   
@@ -396,7 +435,7 @@ body {
           loan2.classList.add("greek_colour");
         });
         loans25.forEach(loan25 => {
-          loan25.classList.add("greek_hebrew");
+          loan25.classList.add("greek_hebrew_colour");
         });
         loans35.forEach(loan35 => {
           loan35.classList.add("latin_hebrew_colour");
@@ -411,7 +450,7 @@ body {
           loan12.classList.add("germanic_greek_colour");
         });
         loans8.forEach(loan8 => {
-          loan8.classList.add("finnic");
+          loan8.classList.add("finnic_colour");
         });
         loans15.forEach(loan15 => {
           loan15.classList.add("germanic_hebrew_colour");
@@ -441,7 +480,7 @@ body {
           loan2.classList.remove("greek_colour");
         });
         loans25.forEach(loan25 => {
-          loan25.classList.remove("greek_hebrew");
+          loan25.classList.remove("greek_hebrew_colour");
         });
         loans35.forEach(loan35 => {
           loan35.classList.remove("latin_hebrew_colour");
@@ -456,7 +495,7 @@ body {
           loan12.classList.remove("germanic_greek_colour");
         });
         loans8.forEach(loan8 => {
-          loan8.classList.remove("finnic");
+          loan8.classList.remove("finnic_colour");
         });
         loans15.forEach(loan15 => {
           loan15.classList.remove("germanic_hebrew_colour");

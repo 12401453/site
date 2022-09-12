@@ -3,6 +3,7 @@
     let codex = 2;
     let book = 1;
     let chapter = 5;
+    let script_code = 1;
 
     const textselector = document.getElementById('textselect');
     const resizeSelect = function () {
@@ -21,12 +22,13 @@
       dummyselect.remove();
     };
 
-    const selectText = function () {
-      text_id = Number(document.getElementById('textselect').value);
+    const gospelsSelectAjax = function () {
+      let loadingbutton = document.createElement('div');
+      loadingbutton.innerHTML = "Loading...";
+      loadingbutton.id = 'loadingbutton';
+      document.getElementById('spoofspan').after(loadingbutton);
 
-      if(text_id < 3) {
-        text_id == 1 ? codex = 2 : codex = 1;
-        let post_data = "text_id="+text_id+"&codex="+codex+"&book="+book+"&chapter="+chapter;
+      let post_data = "text_id="+text_id+"&codex="+codex+"&book="+book+"&chapter="+chapter;
         const httpRequest = (method, url) => {
           const xhttp = new XMLHttpRequest();
           xhttp.open(method, url, true);
@@ -34,13 +36,18 @@
           xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
           xhttp.onreadystatechange = () => {
             if(xhttp.readyState == 4) {
-              let gospels_select_HTML = '<label id="booklabel" for="bookselect">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><select id="bookselect" name="bookselect" onchange="selectBook()"><option value="1">Matthew</option><option value="2">Mark</option><option value="3">Luke</option><option value="4">John</option></select><select id="chapselect" name="chapselect" onchange="selectChapter()">';
+             
               let json_response = xhttp.response;
-              gospels_select_HTML += json_response.HTML_options;
-
+              let gospels_select_HTML = xhttp.response.HTML_options;
+              
               if(json_response.chapter_exists == false) {
                 codex == 1 ? chapter = 3 : chapter = 5; 
               }
+              if(json_response.book_exists == false) {
+                book = 1;
+                chapter = 3;
+              }
+              fetchText();
 
               document.getElementById("gospels_chap_select").innerHTML = gospels_select_HTML;
               document.getElementById("chapselect").value = chapter;
@@ -52,7 +59,15 @@
           xhttp.send(post_data);
         }
         httpRequest("POST", "gospels_chap_select.php");
+    };
 
+    const selectText = function () {
+      text_id = Number(document.getElementById('textselect').value);
+
+      if(text_id < 3) {
+        text_id == 1 ? codex = 2 : codex = 1; 
+        gospelsSelectAjax();
+       // fetchText();
       }
       else {
         document.getElementById("gospels_chap_select").style.display = "none";
@@ -60,6 +75,15 @@
 
       let post_data = "text_id="+text_id;
 
+    };
+
+    const selectBook = function () {
+      book = Number(document.getElementById('bookselect').value);
+      gospelsSelectAjax();
+    };
+
+    const selectChapter = function () {
+      chapter = Number(document.getElementById('chapselect').value);
     };
     
     textselector.addEventListener('change', resizeSelect);
@@ -96,6 +120,7 @@
             switcher_classes.add("selected");
             switch(switcher_id) {
               case("glag_switcher"):
+                script_code = 1;
                 event.target.style.borderRight = "none";
                 event.target.style.borderBottomRightRadius = "0px";
 
@@ -114,6 +139,7 @@
                 document.getElementById("CS_controls").style.display = "none";
                 break;
               case("cyr_switcher"):
+                script_code = 2;
                 event.target.style.borderLeft = "none";
                 event.target.style.borderRight = "none";
                 event.target.style.borderBottomLeftRadius = "0px";
@@ -131,6 +157,7 @@
                 document.getElementById("CS_controls").style.display = "none";
                 break;
               case("CS_switcher"):
+                script_code = 3;
                 event.target.style.borderLeft = "none";
                 event.target.style.borderRight = "none";
                 event.target.style.borderBottomLeftRadius = "0px";
@@ -170,6 +197,39 @@
     };
 
   document.getElementById("script_bar").addEventListener('click', switch_script);
+
+  const fetchText = function () {
+
+    let switcher_id = document.querySelector('.selected').id;
+    let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter;
+      console.log(post_data);
+      const httpRequest = (method, url) => {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open(method, url, true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhttp.onreadystatechange = () => {
+          if(xhttp.readyState == 4) {
+            document.getElementById("main_text").innerHTML = xhttp.responseText;
+            tt_type();
+
+            if(loan_place_showing) {
+              document.getElementById("loan_place").dispatchEvent(clickEvent);
+              document.getElementById("loan_place").dispatchEvent(clickEvent);
+            }
+            if(gone_green) {
+              document.getElementById("morph_highlight").dispatchEvent(clickEvent);
+              document.getElementById("morph_highlight").dispatchEvent(clickEvent);
+            }
+            if(document.getElementById("undone").checked && script_code == 3) { undoFunction(); }
+
+            loadingbutton.remove();
+          }
+        }
+        xhttp.send(post_data);
+      }
+      httpRequest("POST", switcher_id+".php");      
+  };
 
 
   const docRoot = "/site";

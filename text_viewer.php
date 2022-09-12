@@ -31,5 +31,6 @@
 </div>
 <?php include $path."/style_etc/functions.php"; ?>
 
+<span id="spoofspan"></span>
 </body>
 </html>

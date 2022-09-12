@@ -30,7 +30,7 @@
 </div>
 
 <div id="gospels_chap_select">
-  <label id="booklabel" for="bookselect">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+  <label id="booklabel" for="bookselect">Text:</label>
   <select id="bookselect" name="bookselect" onchange="selectBook()">
     <option value="1">Matthew</option>
     <option value="2">Mark</option>

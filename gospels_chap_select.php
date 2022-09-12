@@ -24,10 +24,49 @@
         $chapter = $_POST['chapter'];
     }
 
-    $chapter_exists = false;
-    $HTML_options = "";
+    function bookName ($book_no) {
+      switch($book_no) {
+        case 1:
+          return "Matthew";
+          break;
+        case 2:
+          return "Mark";
+          break;
+        case 3:
+          return "Luke";
+          break;
+        case 4:
+          return "John";
+          break;
+      }
+    }
 
-    $sql = "SELECT chapter FROM gospels_index WHERE codex = $codex AND book = $book";
+    $chapter_exists = false;
+    $book_exists = false;
+    $HTML_options = '<label id="booklabel" for="bookselect">Text:</label>
+    <select id="bookselect" name="bookselect" onchange="selectBook()">';
+
+
+    $sql = "SELECT DISTINCT(book) FROM gospels_index WHERE codex = $codex";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $HTML_options = $HTML_options.'<option value="'.$row["book"].'">'.bookName($row["book"]).'</option>';
+        if($book == $row["book"]) {
+          $book_exists = true;
+        }
+  
+      }
+    }
+    $HTML_options = $HTML_options.'</select>&nbsp;<select id="chapselect" name="chapselect" onchange="selectChapter()">';
+
+    if($book_exists) {
+      $sql = "SELECT chapter FROM gospels_index WHERE codex = $codex AND book = $book";
+    }
+    else {
+      $sql = "SELECT chapter FROM gospels_index WHERE codex = $codex AND book = 1";
+    }
+
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -38,7 +77,11 @@
         }
       }
     }
-    $json_response = json_encode(array("HTML_options" => $HTML_options, "chapter_exists" => $chapter_exists));
+    $HTML_options = $HTML_options.'</select>';
+
+    $json_response = json_encode(array("HTML_options" => $HTML_options, "book_exists" => $book_exists, "chapter_exists" => $chapter_exists));
+    
+
     echo $json_response;
 
 $conn->close();
