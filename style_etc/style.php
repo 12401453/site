@@ -145,6 +145,7 @@ body {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-content: stretch;
+    overflow-x: auto;
 }
 .script_switcher {
   display: flex;

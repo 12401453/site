@@ -84,6 +84,7 @@
 
     const selectChapter = function () {
       chapter = Number(document.getElementById('chapselect').value);
+      gospelsSelectAjax();
     };
     
     textselector.addEventListener('change', resizeSelect);
@@ -93,6 +94,11 @@
     const clickEvent = new Event('click');
     
     const switch_script = function (event) {
+      let loadingbutton = document.createElement('div');
+      loadingbutton.innerHTML = "Loading...";
+      loadingbutton.id = 'loadingbutton';
+      document.getElementById('spoofspan').after(loadingbutton);
+
       let switcher_classes = event.target.classList;
       if(switcher_classes[1] == "selected") return;
 
@@ -187,7 +193,7 @@
               document.getElementById("morph_highlight").dispatchEvent(clickEvent);
               document.getElementById("morph_highlight").dispatchEvent(clickEvent);
             }
-
+            loadingbutton.remove();
           }
         }
         xhttp.send(post_data);
@@ -234,35 +240,66 @@
 
   const docRoot = "/site";
 
- window.addEventListener("resize", ttPosition);
+  let t_type = Number(document.getElementById("type_select").value);
 
-    var t_type = 0;
-
-   function ttPosition() {
-     if(t_type < 4) {return; }
-      const tooltip5s = document.body.getElementsByClassName(`tooltiptext${t_type}`);
-      const viewport_width = window.visualViewport.width;
-      console.log(viewport_width);
-       for (var tt_num in tooltip5s) {
-        let etym_tt = tooltip5s[tt_num];
-        etym_tt.style.transform = "none";
-        etym_tt.style.border = "none";
-        let rectRight = etym_tt.getBoundingClientRect().right;
-        let right_overflow = rectRight - viewport_width + 3;
-        if (right_overflow > 0) {
-       etym_tt.style.transform = `translateX(-${right_overflow}px)`;
-       etym_tt.style.border = "1px solid red";
-
-        }
-
-       console.log(etym_tt);
-      console.log(rectRight);
-      console.log(right_overflow);
-       console.log(viewport_width);
+ /* const ttPosition = function () {
+    if(t_type < 4) {return; }
+    const tooltips = document.body.querySelectorAll(`.tooltiptext${t_type}`);
+    const viewport_width = window.visualViewport.width;
+    // console.log(viewport_width);
+    tooltips.forEach(tooltip => {
+      tooltip.style.transform = "none";
+      tooltip.style.border = "none";
+      let rectRight = tooltip.getBoundingClientRect().right;
+      let right_overflow = rectRight - viewport_width + 3;
+      if (right_overflow > 0) {
+      tooltip.style.transform = `translateX(-${right_overflow}px)`;
+      tooltip.style.border = "1px solid red";
 
       }
 
+    /* console.log(tooltip);
+    console.log(rectRight);
+    console.log(right_overflow);
+      console.log(viewport_width); */
+
+  /*  });
+
+  }; */
+
+  const ttPosition = function () {
+
+    const tooltips = document.body.querySelectorAll(`.tooltiptext${t_type}`);
+    const viewport_width = window.visualViewport.width;
+    if(t_type < 3 || (script_code == 3 && t_type < 4) || (t_type == 3 && viewport_width > 768)) {
+      console.log("ttPosition() returned immediately");
+      return;
     }
+    tooltips.forEach(tooltip => {
+      if(t_type > 3 || tooltip.previousElementSibling.innerHTML.includes("҃")) {
+        tooltip.style.transform = "none";
+        tooltip.style.border = "none";
+        let rectRight = tooltip.getBoundingClientRect().right;
+        let right_overflow = rectRight - viewport_width + 3;
+        console.log("right overflow: "+right_overflow);
+        if(right_overflow > 0) {
+        tooltip.style.transform = `translateX(-${right_overflow}px)`;
+        //tooltip.style.border = "1px solid red";
+        tooltip.style.border = "1px solid black";
+        }
+      }
+        /* console.log(tooltip);
+        console.log(rectRight);
+        console.log(right_overflow);
+        console.log(viewport_width); */
+
+    });
+
+  };
+  
+  window.addEventListener("resize", ttPosition);
+
+    
 
     function tt_type() {
       
@@ -286,6 +323,9 @@
 
       else if (t_type == 3) {
         document.getElementById("tt_styles").setAttribute("href", docRoot+"/style_etc/tooltip_CS_style.css");
+        setTimeout(function () {
+          ttPosition();
+        }, 100);
       }
 
       else if (t_type == 4) {
