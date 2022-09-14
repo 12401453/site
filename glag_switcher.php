@@ -16,6 +16,10 @@
     $sql = "SET NAMES UTF8";
     $res = $conn->query($sql);
 
+    if(isset($_POST['text_id'])) {
+      $text_id = $_POST['text_id'];
+    }
+
     if(isset($_POST['codex'])) {
         $codex = $_POST['codex'];
     }
@@ -31,20 +35,28 @@
     }
     else $chapter = 5;
 
-    $sql = "SELECT tokno_start, tokno_end FROM gospels_index WHERE codex = $codex AND book = $book AND chapter = $chapter";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $tokno_start = $row["tokno_start"];
-    $tokno_end = $row["tokno_end"];
+    if($text_id < 3) {
+      $sql = "SELECT tokno_start, tokno_end FROM gospels_index WHERE codex = $codex AND book = $book AND chapter = $chapter";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $tokno_start = $row["tokno_start"];
+      $tokno_end = $row["tokno_end"];
 
-    $codex_table = "marianus";
-    if($codex == 1) {
-        $codex_table = "zographensis";
+      $codex_table = "marianus";
+      if($codex == 1) {
+          $codex_table = "zographensis";
+      }
+      $sql = "SELECT * FROM $codex_table WHERE tokno < $tokno_end AND tokno > $tokno_start";
+      $result = $conn->query($sql);
+    }
+
+    else {
+      $sql = "SELECT * FROM kievbl";
+      $result = $conn->query($sql);
     }
 
 
-    $sql = "SELECT * FROM $codex_table WHERE tokno < $tokno_end AND tokno > $tokno_start";
-    $result = $conn->query($sql);
+    
 
 echo "<br>";
 

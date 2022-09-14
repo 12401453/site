@@ -91,6 +91,10 @@ body {
   font-family: Bukyvede;
   font-size: 28px;
   }
+  .menaion {
+  font-family: Menaion;
+  font-size: 22px;
+  }
 
   .latin {
     font-family: OnDiskSans;
@@ -125,6 +129,10 @@ body {
   .non_latin {
   font-family: Bukyvede;
   font-size: 22px;
+  }
+  .menaion {
+  font-family: Menaion;
+  font-size: 16px;
   }
 
   .latin {

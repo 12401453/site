@@ -1,5 +1,6 @@
 <script>
     let text_id = 1;
+    let glagolitic = true;
     let codex = 2;
     let book = 1;
     let chapter = 5;
@@ -62,18 +63,40 @@
     };
 
     const selectText = function () {
+      if(text_id == 4) {
+        document.getElementById("script_bar").removeEventListener('click', switchScript_noglag);
+        document.getElementById("script_bar").addEventListener('click', switchScript);
+      }
       text_id = Number(document.getElementById('textselect').value);
+      glagolitic = true;
 
       if(text_id < 3) {
         text_id == 1 ? codex = 2 : codex = 1; 
         gospelsSelectAjax();
        // fetchText();
       }
-      else {
-        document.getElementById("gospels_chap_select").style.display = "none";
-      }
+      else if(text_id == 3) {
+        let loadingbutton = document.createElement('div');
+        loadingbutton.innerHTML = "Loading...";
+        loadingbutton.id = 'loadingbutton';
+        document.getElementById('spoofspan').after(loadingbutton);
 
-      let post_data = "text_id="+text_id;
+        fetchText();
+      }
+      else {
+        let loadingbutton = document.createElement('div');
+        loadingbutton.innerHTML = "Loading...";
+        loadingbutton.id = 'loadingbutton';
+        document.getElementById('spoofspan').after(loadingbutton);
+        
+        if(script_code == 1) script_code = 2;
+        glagolitic = false;
+        document.getElementById("script_bar").removeEventListener('click', switchScript);
+        document.getElementById("script_bar").addEventListener('click', switchScript_noglag);
+        fetchText();
+
+        console.log("Write the php for non-glagolitic texts");
+      }
 
     };
 
@@ -90,21 +113,127 @@
     textselector.addEventListener('change', resizeSelect);
     resizeSelect();
 
+    const fetchText = function () {
+      let switcher_id = document.querySelector('.selected').id;
+      let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter+"&text_id="+text_id;
+      console.log(post_data);
+      const httpRequest = (method, url) => {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open(method, url, true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhttp.onreadystatechange = () => {
+          if(xhttp.readyState == 4) {
+            document.getElementById("main_text").innerHTML = xhttp.responseText;
+            tt_type();
+
+            if(text_id > 2) {
+              document.getElementById("gospels_chap_select").style.display = "none";
+            }
+            if(text_id == 4 && script_code == 2) {
+              document.getElementById("main_text").classList.replace("non_latin", "menaion");
+            }
+            else if(script_code < 3) {
+              document.getElementById("main_text").classList.replace("menaion", "non_latin");
+            }
+           
+
+            if(glagolitic == false) {
+              document.getElementById("glag_switcher").style.display = "none";
+              document.getElementById("glag_switcher").classList.remove("selected");
+              document.getElementById("glag_switcher").classList.add("unselected");
+              document.getElementById("cyr_switcher").style.borderTopLeftRadius = "4px";
+              document.getElementById("cyr_switcher").style.borderLeft = "none";
+              switch(script_code) {
+                case 2:
+                  document.getElementById("cyr_switcher").style.borderRight = "none";
+                  document.getElementById("cyr_switcher").style.borderBottomRightRadius = "0px";
+
+                  document.getElementById("CS_switcher").classList.remove("selected");
+                  document.getElementById("CS_switcher").classList.add("unselected");
+                  document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
+                  document.getElementById("CS_switcher").style.borderRight = "none";
+                  document.getElementById("CS_switcher").style.borderBottomLeftRadius = "8px";
+                  document.getElementById("CS_switcher").style.borderBottomRightRadius = "0px";
+
+                  document.getElementById("CS_controls").style.display = "none";
+                  
+                  document.getElementById("cyr_switcher").classList.remove("unselected");
+                  document.getElementById("cyr_switcher").classList.add("selected");
+                  break;
+                case 3:
+                  document.getElementById("CS_switcher").style.borderLeft = "none";
+                  document.getElementById("CS_switcher").style.borderRight = "none";
+                  document.getElementById("CS_switcher").style.borderBottomLeftRadius = "0px";
+
+                  document.getElementById("cyr_switcher").classList.remove("selected");
+                  document.getElementById("cyr_switcher").classList.add("unselected");
+                  document.getElementById("cyr_switcher").style.borderRight = "2px solid #815400";
+                  document.getElementById("cyr_switcher").style.borderLeft = "none";
+                  document.getElementById("cyr_switcher").style.borderBottomRightRadius = "8px";
+                  document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "0px";
+
+                  document.getElementById("CS_controls").style.display = "inline";
+
+                  document.getElementById("CS_switcher").classList.add("selected");
+                  document.getElementById("CS_switcher").classList.remove("unselected");
+                  break;
+              }
+            }
+            else if(script_code > 1) {
+              document.getElementById("glag_switcher").style.display = "inherit";
+              document.getElementById("cyr_switcher").style.borderTopLeftRadius = "0px";
+              document.getElementById("glag_switcher").style.borderRight = "2px solid #815400";
+              if(script_code == 2) {
+                document.getElementById("glag_switcher").style.borderBottomRightRadius = "8px";
+              }
+              else {
+                document.getElementById("glag_switcher").style.borderBottomRightRadius = "0px";
+              }
+            }
+
+            if(loan_place_showing) {
+              document.getElementById("loan_place").dispatchEvent(clickEvent);
+              document.getElementById("loan_place").dispatchEvent(clickEvent);
+            }
+            if(gone_green) {
+              document.getElementById("morph_highlight").dispatchEvent(clickEvent);
+              document.getElementById("morph_highlight").dispatchEvent(clickEvent);
+            }
+            if(document.getElementById("undone").checked && script_code == 3) { undoFunction(); }
+
+            loadingbutton.remove();
+          }
+        }
+        xhttp.send(post_data);
+      }
+      let php_page = switcher_id;
+      if(glagolitic == false) {
+        if(php_page == "glag_switcher") {
+          php_page = "cyr_switcher";
+        }
+        php_page += "_noglag";
+      }
+      php_page += ".php";
+      httpRequest("POST", php_page);      
+    };
 
     const clickEvent = new Event('click');
     
-    const switch_script = function (event) {
+    let switchScript = function (event) {
+      
+      let switcher_classes = event.target.classList;
+      if(switcher_classes[1] == "selected") return;
+
       let loadingbutton = document.createElement('div');
       loadingbutton.innerHTML = "Loading...";
       loadingbutton.id = 'loadingbutton';
       document.getElementById('spoofspan').after(loadingbutton);
 
-      let switcher_classes = event.target.classList;
-      if(switcher_classes[1] == "selected") return;
 
       let switcher_id = event.target.id;
 
-      let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter;
+      let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter+"&text_id="+text_id;
       console.log(post_data);
       const httpRequest = (method, url) => {
         const xhttp = new XMLHttpRequest();
@@ -202,12 +331,18 @@
       
     };
 
-  document.getElementById("script_bar").addEventListener('click', switch_script);
+    const switchScript_noglag = function (event) {
+      let switcher_classes = event.target.classList;
+      if(switcher_classes[1] == "selected") return;
 
-  const fetchText = function () {
+      let loadingbutton = document.createElement('div');
+      loadingbutton.innerHTML = "Loading...";
+      loadingbutton.id = 'loadingbutton';
+      document.getElementById('spoofspan').after(loadingbutton);
 
-    let switcher_id = document.querySelector('.selected').id;
-    let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter;
+      let switcher_id = event.target.id;
+
+      let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter+"&text_id="+text_id;
       console.log(post_data);
       const httpRequest = (method, url) => {
         const xhttp = new XMLHttpRequest();
@@ -216,9 +351,50 @@
 
         xhttp.onreadystatechange = () => {
           if(xhttp.readyState == 4) {
+            if(switcher_id == "CS_switcher") {
+              document.getElementById("main_text").classList.replace("menaion", "latin");
+            }
+            else {
+              document.getElementById("main_text").classList.replace("latin", "menaion");
+            }
             document.getElementById("main_text").innerHTML = xhttp.responseText;
             tt_type();
 
+            switcher_classes.remove("unselected");
+            switcher_classes.add("selected");
+            switch(switcher_id) {
+              case("cyr_switcher"):
+                script_code = 2;
+                event.target.style.borderRight = "none";
+                event.target.style.borderBottomRightRadius = "0px";
+
+                document.getElementById("CS_switcher").classList.remove("selected");
+                document.getElementById("CS_switcher").classList.add("unselected");
+                document.getElementById("CS_switcher").style.borderLeft = "2px solid #815400";
+                document.getElementById("CS_switcher").style.borderRight = "none";
+                document.getElementById("CS_switcher").style.borderBottomLeftRadius = "8px";
+                document.getElementById("CS_switcher").style.borderBottomRightRadius = "0px";
+
+                document.getElementById("CS_controls").style.display = "none";
+                break;
+              case("CS_switcher"):
+                script_code = 3;
+                event.target.style.borderLeft = "none";
+                event.target.style.borderRight = "none";
+                event.target.style.borderBottomLeftRadius = "0px";
+
+                document.getElementById("cyr_switcher").classList.remove("selected");
+                document.getElementById("cyr_switcher").classList.add("unselected");
+                document.getElementById("cyr_switcher").style.borderRight = "2px solid #815400";
+                document.getElementById("cyr_switcher").style.borderLeft = "none";
+                document.getElementById("cyr_switcher").style.borderBottomRightRadius = "8px";
+                document.getElementById("cyr_switcher").style.borderBottomLeftRadius = "0px";
+
+                document.getElementById("CS_controls").style.display = "inline";
+                if(document.getElementById("undone").checked) { undoFunction(); }
+          
+                break;    
+            }
             if(loan_place_showing) {
               document.getElementById("loan_place").dispatchEvent(clickEvent);
               document.getElementById("loan_place").dispatchEvent(clickEvent);
@@ -227,16 +403,16 @@
               document.getElementById("morph_highlight").dispatchEvent(clickEvent);
               document.getElementById("morph_highlight").dispatchEvent(clickEvent);
             }
-            if(document.getElementById("undone").checked && script_code == 3) { undoFunction(); }
-
             loadingbutton.remove();
           }
         }
         xhttp.send(post_data);
       }
-      httpRequest("POST", switcher_id+".php");      
-  };
+      httpRequest("POST", switcher_id+"_noglag.php");      
+    
+    };
 
+  document.getElementById("script_bar").addEventListener('click', switchScript);
 
   const docRoot = "/site";
 
