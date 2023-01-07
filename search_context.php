@@ -33,12 +33,32 @@
   </span>
 
   <span id="main_text" class="non_latin">
-    <?php include $path."/glag_switcher.php"; ?>
+    <?php // include $path."/glag_switcher.php"; ?>
   </span>
   
 </div>
 <?php include $path."/style_etc/functions.php"; ?>
 
 <span id="spoofspan"></span>
+
+<?php 
+$codex = 2;
+$book = 1;
+$chapter = 24;
+$text_id = 1;
+
+echo "<script> codex = ".$codex."; book = ".$book."; chapter = ".$chapter."; text_id = ".$text_id.";";
+echo "document.getElementById('textselect').value = ".$text_id.";";
+echo "document.getElementById('bookselect').value = ".$book.";";
+echo "document.getElementById('bookselect').style.display = 'none';";
+echo "document.getElementById('chapselect').value = ".$chapter.";";
+echo "document.getElementById('chapselect').style.display = 'none';";
+echo "resizeSelect(); selectText();";
+echo "</script>";
+
+
+
+?>
+
 </body>
 </html>
