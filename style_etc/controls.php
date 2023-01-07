@@ -56,9 +56,9 @@
 
 <br>
 <span id="top_buttons">
-<input type="checkbox" id="morph_highlight" name="morph_highlight" disabled="disabled">
+<input type="checkbox" id="morph_highlight" name="morph_highlight" autocomplete="off" disabled="disabled">
   <label for="morph_highlight">Highlight morphologically conditioned or other non-etymological development</label><br>
-<input type="checkbox" id="loan_place" name="loan_place" disabled="disabled">
+<input type="checkbox" id="loan_place" name="loan_place" autocomplete="off" disabled="disabled">
   <label for="loan_place">Show loanword origin</label><br>
 
   <br></span>

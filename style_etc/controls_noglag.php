@@ -2,9 +2,9 @@
 <br>
 
 <span id="top_buttons">
-<input type="checkbox" id="morph_highlight" name="morph_highlight" disabled="disabled">
+<input type="checkbox" id="morph_highlight" name="morph_highlight" autocomplete="off" disabled="disabled">
   <label for="morph_highlight">Highlight morphologically conditioned or other non-etymological development</label><br>
-<input type="checkbox" id="loan_place" name="loan_place" disabled="disabled">
+<input type="checkbox" id="loan_place" name="loan_place" autocomplete="off" disabled="disabled">
   <label for="loan_place">Show loanword origin</label><br>
 
  <span id="CS_controls" style="display: none"> <input type="radio" id="undone" name="undone" onclick="undoFunction()">

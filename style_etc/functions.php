@@ -418,31 +418,6 @@
 
   let t_type = Number(document.getElementById("type_select").value);
 
- /* const ttPosition = function () {
-    if(t_type < 4) {return; }
-    const tooltips = document.body.querySelectorAll(`.tooltiptext${t_type}`);
-    const viewport_width = window.visualViewport.width;
-    // console.log(viewport_width);
-    tooltips.forEach(tooltip => {
-      tooltip.style.transform = "none";
-      tooltip.style.border = "none";
-      let rectRight = tooltip.getBoundingClientRect().right;
-      let right_overflow = rectRight - viewport_width + 3;
-      if (right_overflow > 0) {
-      tooltip.style.transform = `translateX(-${right_overflow}px)`;
-      tooltip.style.border = "1px solid red";
-
-      }
-
-    /* console.log(tooltip);
-    console.log(rectRight);
-    console.log(right_overflow);
-      console.log(viewport_width); */
-
-  /*  });
-
-  }; */
-
   const ttPosition = function () {
 
     const tooltips = document.body.querySelectorAll(`.tooltiptext${t_type}`);
