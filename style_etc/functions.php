@@ -23,7 +23,7 @@
       dummyselect.remove();
     };
 
-    const gospelsSelectAjax = function () {
+    const gospelsSelectAjax = function (tokno = 0) {
       let loadingbutton = document.createElement('div');
       loadingbutton.innerHTML = "Loading...";
       loadingbutton.id = 'loadingbutton';
@@ -48,7 +48,7 @@
                 book = 1;
                 chapter = 3;
               }
-              fetchText();
+              fetchText(tokno);
 
               document.getElementById("gospels_chap_select").innerHTML = gospels_select_HTML;
               document.getElementById("chapselect").value = chapter;
@@ -62,7 +62,7 @@
         httpRequest("POST", "gospels_chap_select.php");
     };
 
-    const selectText = function () {
+    const selectText = function (tokno = 0) {
       if(text_id == 4) {
         document.getElementById("script_bar").removeEventListener('click', switchScript_noglag);
         document.getElementById("script_bar").addEventListener('click', switchScript);
@@ -72,7 +72,7 @@
 
       if(text_id < 3) {
         text_id == 1 ? codex = 2 : codex = 1; 
-        gospelsSelectAjax();
+        gospelsSelectAjax(tokno);
        // fetchText();
       }
       else if(text_id == 3) {
@@ -81,7 +81,7 @@
         loadingbutton.id = 'loadingbutton';
         document.getElementById('spoofspan').after(loadingbutton);
 
-        fetchText();
+        fetchText(tokno);
       }
       else {
         let loadingbutton = document.createElement('div');
@@ -93,7 +93,7 @@
         glagolitic = false;
         document.getElementById("script_bar").removeEventListener('click', switchScript);
         document.getElementById("script_bar").addEventListener('click', switchScript_noglag);
-        fetchText();
+        fetchText(tokno);
 
         console.log("Write the php for non-glagolitic texts");
       }
@@ -113,7 +113,7 @@
     textselector.addEventListener('change', resizeSelect);
     resizeSelect();
 
-    const fetchText = function () {
+    const fetchText = function (tokno = 0) {
       let switcher_id = document.querySelector('.selected').id;
       let post_data = "codex="+codex+"&book="+book+"&chapter="+chapter+"&text_id="+text_id;
       console.log(post_data);
@@ -202,7 +202,23 @@
             }
             if(document.getElementById("undone").checked && script_code == 3) { undoFunction(); }
 
+            let search_tokno = "tokno_"+tokno;
+            console.log(search_tokno);
+            
             loadingbutton.remove();
+            
+            if(tokno != 0) {
+              document.getElementById(search_tokno).style.borderStyle = "solid";
+              
+              setTimeout(function () {
+                document.getElementById(search_tokno).scrollIntoView();
+              }, 500);
+              
+       
+            }
+            
+            
+            
           }
         }
         xhttp.send(post_data);
@@ -476,7 +492,7 @@
         document.getElementById("tt_styles").setAttribute("href", docRoot+"/style_etc/tooltip_CS_style.css");
         setTimeout(function () {
           ttPosition();
-        }, 100);
+        }, 200);
       }
 
       else if (t_type == 4) {
@@ -489,7 +505,7 @@
        // window.dispatchEvent(new Event('resize'));
         setTimeout(function () {
           ttPosition();
-        }, 100);
+        }, 200);
 
       }
 
@@ -503,7 +519,7 @@
       //  window.dispatchEvent(new Event('resize'));
         setTimeout(function () {
           ttPosition();
-        }, 100);
+        }, 200);
 
       }
 
@@ -517,9 +533,7 @@
         //window.dispatchEvent(new Event('resize'));
         setTimeout(function () {
           ttPosition();
-        }, 100);
+        }, 200);
       }
     }
-
-    scrollFunction(); //has to go last
 </script>

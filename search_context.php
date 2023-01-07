@@ -42,10 +42,28 @@
 <span id="spoofspan"></span>
 
 <?php 
+
 $codex = 2;
+if(isset($_GET['codex'])) {
+  $codex = $_GET['codex'];
+}
 $book = 1;
-$chapter = 24;
+if(isset($_GET['book'])) {
+  $book = $_GET['book'];
+}
+$chapter = 5;
+if(isset($_GET['chapter'])) {
+  $chapter = $_GET['chapter'];
+}
 $text_id = 1;
+if(isset($_GET['text_id'])) {
+  $text_id = $_GET['text_id'];
+}
+
+$search_tokno = 0;
+if(isset($_GET['tokno'])) {
+  $search_tokno = $_GET['tokno'];
+}
 
 echo "<script> codex = ".$codex."; book = ".$book."; chapter = ".$chapter."; text_id = ".$text_id.";";
 echo "document.getElementById('textselect').value = ".$text_id.";";
@@ -53,7 +71,7 @@ echo "document.getElementById('bookselect').value = ".$book.";";
 echo "document.getElementById('bookselect').style.display = 'none';";
 echo "document.getElementById('chapselect').value = ".$chapter.";";
 echo "document.getElementById('chapselect').style.display = 'none';";
-echo "resizeSelect(); selectText();";
+echo "resizeSelect(); selectText(".$search_tokno.");";
 echo "</script>";
 
 
