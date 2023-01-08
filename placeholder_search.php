@@ -201,8 +201,9 @@ $M_bar_ma = mb_strpos($search2, 'M');
 
         if (preg_match($search2, $cs_row) === 1) {
       	echo  $row["glag_id"].' | '.$row["cyr_id_good"].' | '.'<span style="font-family:Calibri; font-size:24px">'. $row["cs_id"].'</span>';
-if (gethyperlink($tokno_row, $texttype) !== "") {
-echo  '   '. '<span class="context_link" style="font-family:Calibri; font-size:17px"><a href="' . gethyperlink($tokno_row, $texttype) . '">Context</a></span><br>'; }
+if (gethyperlink($tokno_row, $texttype) !== 99) {
+  echo  '   '. '<span class="context_link" style="font-family:Calibri; font-size:17px"><a href="' . gethyperlink($tokno_row, $texttype) . '">Context</a></span><br>'; 
+}
 else { echo '<br>';}
       }
 

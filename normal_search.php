@@ -136,8 +136,9 @@ $SELECT_part1 = "SELECT * FROM $texttype WHERE LOCATE('$search', $searchtype)";
 
 
       	echo  $row["glag_id"].' | '.$row["cyr_id_good"].' | '.'<span style="font-family:Calibri; font-size:24px">'. $row["cs_id"].'</span>';
-if (gethyperlink($tokno_row, $texttype) !== "") {
-echo  '   '. '<span class="context_link" style="font-family:Calibri; font-size:17px"><a href="' . gethyperlink($tokno_row, $texttype). '">Context</a></span><br>'; }
+if (gethyperlink($tokno_row, $texttype) !== 99) {
+  echo  '   '. '<span class="context_link" style="font-family:Calibri; font-size:17px"><a href="' . gethyperlink($tokno_row, $texttype). '">Context</a></span><br>'; 
+}
 else { echo '<br>';}
 
   }

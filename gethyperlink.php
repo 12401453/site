@@ -129,12 +129,14 @@ function gethyperlink($tokno_row, $texttype) {
         elseif($tokno_row > 8683 AND $tokno_row < 9853) {$book = 1; $chapter = 26;}
         elseif($tokno_row > 9853 AND $tokno_row < 10777) {$book = 1; $chapter = 27;}
         elseif($tokno_row > 10777 AND $tokno_row < 11090) {$book = 1; $chapter = 28;}
+
+        else {return 99;}
         
         $hyperlink = "/site/search_context.php?text_id=2&book=".$book."&chapter=".$chapter."&tokno=".$tokno_row;
         return $hyperlink;
     }
   
-    return "";
+    return 99;
    
   }
 
