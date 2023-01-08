@@ -1,7 +1,13 @@
 <html>
 <head>
-  <?php include 'links.php'; ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>let page_id = 3;</script>
+<?php
+$path = $_SERVER["DOCUMENT_ROOT"];
+$path = $path."/site";
+include $path."/links.php";
+include $path."/style_etc/style_search.php";
+?>
 </head>
 <style>
 p1 {

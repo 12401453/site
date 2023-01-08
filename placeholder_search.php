@@ -1,20 +1,26 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-    <style>
-      @font-face { font-family: Bukyvede; src: url('/site/Fonts/BukyVede-Regular.ttf'); }
-      p1 {
-         font-family: Bukyvede; font-size: 28px
-      }
-
-    </style>
+<?php $path = $_SERVER["DOCUMENT_ROOT"];
+    $path = $path."/site";
+    include $path."/style_etc/style_search.php";
+?>
+  <style>
+    p1 {
+        font-family: Bukyvede; font-size: 28px
+    }
+  </style>
 </head>
-<h> <?php
+
+<h>
+<script>let page_id = 0;</script>
+<?php
 $path = $_SERVER["DOCUMENT_ROOT"];
 $path = $path."/site";
-include $path."/links.php";?><br>
-   <a href="/site/search.php">Search again</a>
+include $path."/links.php";
+?>
+<br>
+<a href="/site/search.php">Search again</a>
 </h>
 
 <body>

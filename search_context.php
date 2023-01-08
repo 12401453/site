@@ -16,8 +16,11 @@
 </head>
 
 <body>
-<br>
-<?php include $path."/style_etc/controls.php"; ?>
+<script>let page_id = 1;</script>
+<?php
+include $path."/links.php";
+include $path."/style_etc/controls.php"; 
+?>
 
 <div id="main_flexbox">
   

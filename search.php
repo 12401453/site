@@ -3,21 +3,25 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-    <style>
-      @font-face { font-family: Bukyvede; src: url('/site/Fonts/BukyVede-Regular.ttf'); }
-      p1 {
-         font-family: Bukyvede
-         }
-      p2 {
-       font-family: Calibri
-     }
-    </style>
+<?php
+  $path = $_SERVER["DOCUMENT_ROOT"];
+  $path = $path."/site";
+  include $path."/style_etc/style_search.php"; 
+?>
+  <style>
+    p1 {
+        font-family: Bukyvede
+        }
+    p2 {
+      font-family: Calibri
+    }
+  </style>
 </head>
-<h> <?php
+<h>
+<script>let page_id = 2;</script>
+<?php
 $path = $_SERVER["DOCUMENT_ROOT"];
-include $path."/links.php";
-
+include $path."/site/links.php";
 ?>
 </h>
 
@@ -35,14 +39,14 @@ document.getElementById('cs_search').setAttribute('action', '/site/placeholder_s
 spoofspan.style.display = 'none';
 document.getElementById('cyrCheck').disabled = true;
 document.getElementById('glagCheck').disabled = true;
-document.getElementById('anyvowel_search').disabled = true;
+//document.getElementById('anyvowel_search').disabled = true;
 }
 else {
   document.getElementById("cs_search").setAttribute("action", "/site/normal_search.php");
 spoofspan.style.display = 'inline';
 document.getElementById('cyrCheck').disabled = false;
 document.getElementById('glagCheck').disabled = false;
-document.getElementById('anyvowel_search').disabled = false;
+//document.getElementById('anyvowel_search').disabled = false;
 }
 }
 
