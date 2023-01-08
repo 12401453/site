@@ -10,16 +10,18 @@ include $path."/style_etc/style_search.php";
 ?>
 </head>
 <style>
-p1 {
+#para1 {
   font-family: Calibri;
+  margin: 8px;
 }
 p2 {
   font-family: Bukyvede;
 }
 
 </style>
-<body><p1>
-<br><br>
+<body>
+<div id="para1">
+<br>
 
 <b>Loanword origin code:</b><br>
 1=Germanic, 2=Greek, 3=Latin, 5=Hebrew/Aramaic/general Bible-area Semitic, 7=Turkic, 8=Finno-Ugric, 9=Mongolian, 12 = Greek via Germanic, 25 Hebrew via Greek, 10=Slavic via Germanic etc.
@@ -96,5 +98,5 @@ p2 {
 -- *bv is kept but really should be replaced with just /b/, even though keeping it would give the reader and searcher the opportunity to investigate the extent to which this simplification has been levelled away (e.g. Ru. обвал), as it was beyond doubt a pre-CS change, and /bv/ certainly was disallowed by the CS phonemic system.
 <br><br>
 --Devoicing assimilation of /z/ in prefixes like /jьz/- and /bez/- (e.g. ра<b>с</b>тръгнѫти) to the following consonant has been considered originally CS, with systems like Modern Bulgarian e.g. разпад seen as a later generalisation of the voiced variants.
-</p></body>
+</div></body>
 </html>

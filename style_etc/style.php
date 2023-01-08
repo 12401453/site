@@ -29,6 +29,7 @@
 
 body {
   background-color: #f0c36dbd;
+  margin: 0;
 }
 #top_buttons {
   font-family: OnDiskSans;

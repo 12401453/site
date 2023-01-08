@@ -111,23 +111,23 @@ function gethyperlink($tokno_row, $texttype) {
     if($texttype == "zographensis") {
   
         if($tokno_row < 116) { $book = 1; $chapter = 3;}
-        elseif($tokno_row > 116 AND $tokno_row < 515) {$book = 1; $chapter = 4;}
-        elseif($tokno_row > 515 AND $tokno_row < 1282) {$book = 1; $chapter = 5;}
-        elseif($tokno_row > 1282 AND $tokno_row < 1890) {$book = 1; $chapter = 6;}
-        elseif($tokno_row > 1890 AND $tokno_row < 2358) {$book = 1; $chapter = 7;}
-        elseif($tokno_row > 2358 AND $tokno_row < 2910) {$book = 1; $chapter = 8;}
-        elseif($tokno_row > 2910 AND $tokno_row < 3322) {$book = 1; $chapter = 9;}
-        elseif($tokno_row > 3322 AND $tokno_row < 3985) {$book = 1; $chapter = 10;}
-        elseif($tokno_row > 3985 AND $tokno_row < 4433) {$book = 1; $chapter = 11;}
-        elseif($tokno_row > 4433 AND $tokno_row < 5253) {$book = 1; $chapter = 12;}
-        elseif($tokno_row > 5253 AND $tokno_row < 6182) {$book = 1; $chapter = 13;}
-        elseif($tokno_row > 6182 AND $tokno_row < 6675) {$book = 1; $chapter = 14;}
-        elseif($tokno_row > 6675 AND $tokno_row < 7232) {$book = 1; $chapter = 15;}
-        elseif($tokno_row > 7232 AND $tokno_row < 7516) {$book = 1; $chapter = 16;}
-        elseif($tokno_row > 7516 AND $tokno_row < 7984) {$book = 1; $chapter = 24;}
-        elseif($tokno_row > 7984 AND $tokno_row < 8683) {$book = 1; $chapter = 25;}
-        elseif($tokno_row > 8683 AND $tokno_row < 9853) {$book = 1; $chapter = 26;}
-        elseif($tokno_row > 9853 AND $tokno_row < 10777) {$book = 1; $chapter = 27;}
+        elseif($tokno_row > 116 AND $tokno_row < 514) {$book = 1; $chapter = 4;}
+        elseif($tokno_row > 514 AND $tokno_row < 1281) {$book = 1; $chapter = 5;}
+        elseif($tokno_row > 1281 AND $tokno_row < 1889) {$book = 1; $chapter = 6;}
+        elseif($tokno_row > 1889 AND $tokno_row < 2357) {$book = 1; $chapter = 7;}
+        elseif($tokno_row > 2357 AND $tokno_row < 2909) {$book = 1; $chapter = 8;}
+        elseif($tokno_row > 2909 AND $tokno_row < 3321) {$book = 1; $chapter = 9;}
+        elseif($tokno_row > 3321 AND $tokno_row < 3984) {$book = 1; $chapter = 10;}
+        elseif($tokno_row > 3984 AND $tokno_row < 4432) {$book = 1; $chapter = 11;}
+        elseif($tokno_row > 4432 AND $tokno_row < 5252) {$book = 1; $chapter = 12;}
+        elseif($tokno_row > 5252 AND $tokno_row < 6181) {$book = 1; $chapter = 13;}
+        elseif($tokno_row > 6181 AND $tokno_row < 6674) {$book = 1; $chapter = 14;}
+        elseif($tokno_row > 6674 AND $tokno_row < 7231) {$book = 1; $chapter = 15;}
+        elseif($tokno_row > 7231 AND $tokno_row < 7515) {$book = 1; $chapter = 16;}
+        elseif($tokno_row > 7516 AND $tokno_row < 7982) {$book = 1; $chapter = 24;}
+        elseif($tokno_row > 7982 AND $tokno_row < 8681) {$book = 1; $chapter = 25;}
+        elseif($tokno_row > 8681 AND $tokno_row < 9851) {$book = 1; $chapter = 26;}
+        elseif($tokno_row > 9851 AND $tokno_row < 10777) {$book = 1; $chapter = 27;}
         elseif($tokno_row > 10777 AND $tokno_row < 11090) {$book = 1; $chapter = 28;}
 
         else {return 99;}

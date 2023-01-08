@@ -6,9 +6,11 @@
     include $path."/style_etc/style_search.php";
 ?>
   <style>
-    p1 {
-        font-family: Bukyvede; font-size: 28px
-    }
+   #para1 {
+         font-family: Bukyvede;
+         font-size: 28px;
+         margin: 8px;
+      }
   </style>
 </head>
 
@@ -20,12 +22,10 @@ $path = $path."/site";
 include $path."/links.php";
 ?>
 <br>
-<a href="/site/search.php">Search again</a>
 </h>
 
 <body>
-<p1 style="font-size:28px">
-<br>
+<div id="para1">
 
 
 
@@ -226,5 +226,5 @@ else {
 $conn->close();
 
 ?>
-</p1>
+</div>
 </body>

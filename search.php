@@ -10,10 +10,11 @@
 ?>
   <style>
     p1 {
-        font-family: Bukyvede
+        font-family: Bukyvede;
         }
-    p2 {
-      font-family: Calibri
+    #para1 {
+      font-family: Calibri;
+      margin: 8px;
     }
   </style>
 </head>
@@ -57,8 +58,8 @@ document.getElementById('glagCheck').disabled = false;
   </script>
 
 
-<p2 style="font-size:20px">
-<br>
+<div id="para1" style="font-size:20px">
+
 <br>
 
 <form id="cs_search" action="/site/normal_search.php" method="post">
@@ -204,7 +205,7 @@ Search via:<span id="spoofspan" style="display: inline;"></span><br>
 <br><br>
 <span style="font-size: 15px;">Note: searching for <b>ŕ, r</b> or <b>ĺ, l</b> alone will bring up results containing <b>ŕ̥, r̥</b> or <b>ĺ̥, l̥</b> respectively as well, because there is no single Unicode code for the syllabic letters, and they have to be respresented by the code for the non-syllabic letter plus the code for the "combining ring below".</span>
 
-
+</div>
 
 
 

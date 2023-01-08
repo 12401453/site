@@ -28,7 +28,8 @@
 }
 
 body {
-  background-color: white;
+  background-color: #f0c36dbd;
+  margin: 0;
 }
 @media all and (max-width: 768px) {
   .link-buttons {
