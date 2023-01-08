@@ -1,9 +1,9 @@
 
 <br>
-
+<form autocomplete="off"> 
 <div id="select_button">
   <label id="textlabel" for="textselect">Text:</label>
-  <select id="textselect" name="textselect" onchange="selectText()">
+  <select id="textselect" name="textselect" autocomplete="off" onchange="selectText()">
     <?php $path = $_SERVER["DOCUMENT_ROOT"];
         $path = $path."/site";
         include $path."/db_details_web.php";
@@ -31,14 +31,14 @@
 
 <div id="gospels_chap_select">
   <label id="booklabel" for="bookselect">Text:</label>
-  <select id="bookselect" name="bookselect" onchange="selectBook()">
+  <select id="bookselect" name="bookselect" autocomplete="off" onchange="selectBook()">
     <option value="1">Matthew</option>
     <option value="2">Mark</option>
     <option value="3">Luke</option>
     <option value="4">John</option>
   </select>
 
-  <select id="chapselect" name="chapselect" onchange="selectChapter()">
+  <select id="chapselect" name="chapselect" autocomplete="off" onchange="selectChapter()">
     <?php  
     $sql = "SELECT chapter FROM gospels_index WHERE codex = 2 AND book = 1";
       $res = $conn->query($sql);
@@ -53,6 +53,7 @@
     ?>
   </select>
 </div>
+</form>
 
 <br>
 <span id="top_buttons">
@@ -63,13 +64,16 @@
 
   <br></span>
 
+<form autocomplete="off">
 <div id="tt_button"><label for="type_select" style="font-weight: bold">Tooltip:</label>
-    <select id="type_select" name="tooltip_data" onchange="tt_type()">
-      <option value="0">None</option>
-      <option value="1">Cyrillic</option>
-      <option value="2">Glagolitic</option>
-      <option value="3" selected="selected">Common Slavic</option>
-      <option value="4">English</option>
-      <option value="5">Etymology discussion</option>
-      <option value="6">Loanword source</option>
-    </select></div>
+  <select id="type_select" name="tooltip_data" onchange="tt_type()">
+    <option value="0">None</option>
+    <option value="1">Cyrillic</option>
+    <option value="2">Glagolitic</option>
+    <option value="3" selected="selected">Common Slavic</option>
+    <option value="4">English</option>
+    <option value="5">Etymology discussion</option>
+    <option value="6">Loanword source</option>
+  </select>
+</div>
+</form>

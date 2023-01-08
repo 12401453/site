@@ -12,13 +12,16 @@
     <input type="radio" checked id="redone" name="undone" onclick="redoFunction()">
       <label for="redone" id="redo_label">Keep non-etymological changes</label></span><br></span>
 
+<form autocomplete="off">
 <div id="tt_button"><label for="type_select" style="font-weight: bold">Tooltip:</label>
-    <select id="type_select" name="tooltip_data" onchange="tt_type()">
-      <option value="0">None</option>
-      <option value="1">Cyrillic</option>
+  <select id="type_select" name="tooltip_data" onchange="tt_type()">
+    <option value="0">None</option>
+    <option value="1">Cyrillic</option>
 
-      <option value="3" selected="selected">Common Slavic</option>
-      <option value="4">English</option>
-      <option value="5">Etymology discussion</option>
-      <option value="6">Loanword source</option>
-    </select></div>
+    <option value="3" selected="selected">Common Slavic</option>
+    <option value="4">English</option>
+    <option value="5">Etymology discussion</option>
+    <option value="6">Loanword source</option>
+  </select>
+</div>
+</form>
