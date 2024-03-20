@@ -51,99 +51,103 @@ $no_cs_hidden = $_POST['no_cs_hidden'];
 $restr = $loans_hidden + $loans + $long_adj_hidden + $long_adj + $no_cs + $no_cs_hidden;
 
 
-function utf8_substr_replace($original, $replacement, $position, $length)
-{
-    $startString = mb_substr($original, 0, $position, "UTF-8");
-    $endString = mb_substr($original, $position + $length, mb_strlen($original), "UTF-8");
-
-    $out = $startString . $replacement . $endString;
-
-    return $out;
+function utf8_substr_replace($original, $replacement, $position, $length) {
+  $startString = mb_substr($original, 0, $position, "UTF-8");
+  $endString = mb_substr($original, $position + $length, mb_strlen($original), "UTF-8");
+  $out = $startString . $replacement . $endString;
+  return $out;
 }
 
 include $path."/gethyperlink.php";
-
-
-
 include $path."/db_details_web.php";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error){
+if($conn->connect_error) {
 	die("Connection failed: ". $conn->connect_error);
 }
 
 $sql = "SET NAMES UTF8";
 $res = $conn->query($sql);
 
-$SELECT_part1 = "SELECT * FROM $texttype WHERE LOCATE('$search', $searchtype)";
+$glag_present = true;
+if($texttype == "1229_riga") {
+  $glag_present = false;
+}
 
-  if (mb_strpos($search, 'F') === 0) {
-    $search = utf8_substr_replace($search, '', 0, 1);
-    $SELECT_part1 = "SELECT * FROM $texttype WHERE $searchtype LIKE '$search%'";
-   }
+$column_list = "tokno, cs_id, cyr_id_good, glag_id";
+if(!$glag_present) {
+  $column_list = "tokno, cs_id, cyr_id_good";
+  if($searchtype == "glag_id") $searchtype = "cyr_id_good";
+}
 
-  if (mb_strpos($search, 'F') === false) {
+$SELECT_part1 = "SELECT $column_list FROM $texttype WHERE LOCATE('$search', $searchtype)";
 
-    switch ($restr) {
+if(mb_strpos($search, 'F') === 0) {
+  $search = utf8_substr_replace($search, '', 0, 1);
+  $SELECT_part1 = "SELECT $column_list FROM $texttype WHERE $searchtype LIKE '$search%'";
+}
+
+if(mb_strpos($search, 'F') === false) {
+
+  switch ($restr) {
     case 3:
-        $sql = $SELECT_part1;
-    break;
+      $sql = $SELECT_part1;
+      break;
 
     case 5:
       $sql = $SELECT_part1." AND cyr_id_good NOT LIKE '%҃%'";
-    break;
+      break;
 
     case 6:
       $sql = $SELECT_part1." AND non_assim !='W'";
-    break;
+      break;
 
     case 7:
       $sql = $SELECT_part1." AND long_adj !='2' AND long_adj !='4'";
-    break;
+      break;
 
     case 8:
       $sql = $SELECT_part1." AND non_assim !='W' AND cyr_id_good NOT LIKE '%҃%'";
-    break;
+      break;
 
     case 9:
       $sql = $SELECT_part1." AND long_adj !='2' AND long_adj !='4' AND cyr_id_good NOT LIKE '%҃%'";
-    break;
+      break;
 
     case 10:
       $sql = $SELECT_part1." AND non_assim !='W' AND long_adj !='2' AND long_adj !='4'";
-    break;
+      break;
 
     case 12:
       $sql = $SELECT_part1." AND non_assim !='W' AND long_adj !='2' AND long_adj !='4' AND cyr_id_good NOT LIKE '%҃%'";
-    break;
+      break;
 
   }
 
   $result = $conn->query($sql);
 
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $tokno_row = $row["tokno"];
 
-  if ($result->num_rows > 0){
-  while($row = $result->fetch_assoc() ){
-    $tokno_row = $row["tokno"];
+      $cs_row = $row["cs_id"];
+      $cyr_row = $row["cyr_id_good"];
 
-    $cs_row = $row["cs_id"];
-    $cyr_row = $row["cyr_id_good"];
-    $glag_row = $row["glag_id"];
+      if($glag_present) {
+        echo $row["glag_id"].' | ';
+      }
+      echo $cyr_row.' | '.'<span style="font-family:Calibri; font-size:24px">'. $cs_row.'</span>';
+      if (gethyperlink($tokno_row, $texttype) !== 99) {
+        echo  '   '. '<span class="context_link" style="font-family:Calibri; font-size:17px"><a href="' . gethyperlink($tokno_row, $texttype). '">Context</a></span><br>'; 
+      }
+      else { echo '<br>';}
 
-
-
-      	echo  $row["glag_id"].' | '.$row["cyr_id_good"].' | '.'<span style="font-family:Calibri; font-size:24px">'. $row["cs_id"].'</span>';
-if (gethyperlink($tokno_row, $texttype) !== 99) {
-  echo  '   '. '<span class="context_link" style="font-family:Calibri; font-size:17px"><a href="' . gethyperlink($tokno_row, $texttype). '">Context</a></span><br>'; 
+    }
+  } 
+  else {
+    echo "<span style='font-family: sans-serif'>Ешқандай нәтиже табылған жоқ</span>";
+  }
 }
-else { echo '<br>';}
-
-  }
-  } else {
-  	echo "<span style='font-family: Calibri'>Ешқандай нәтиже табылған жоқ</span>";
-  }
-  }
-
 else {
   echo "<span style='font-family: Calibri'>Please put the 'F' letter at the front of the query, not anywhere else.</span>";
 }
